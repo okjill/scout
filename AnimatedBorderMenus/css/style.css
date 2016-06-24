@@ -78,7 +78,7 @@ body  {
 }
 
 .bt-menu-open .bt-menu-trigger span {
-	background-color: #F19C7A;
+	background-color: #E24207;
 }
 
 .bt-menu-trigger span:before,
@@ -105,7 +105,7 @@ body  {
 
 .bt-menu-open .bt-menu-trigger span:before,
 .bt-menu-open .bt-menu-trigger span:after {
-	background-color: #F19C7A;
+	background-color: #E24207;
 }
 
 .bt-menu-open .bt-menu-trigger span:before {
@@ -192,7 +192,7 @@ body  {
 .bt-menu ul li a {
 	display: block;
 	outline: none;
-	color: #F19C7A;
+	color: #E24207;
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
