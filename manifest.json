@@ -4,23 +4,24 @@
   "version": "0.1",
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": ["jquery-3.0.0.min.js", "content.js"]
+      "js": ["jquery-3.0.0.min.js","jquery.backstretch.min.js", "content.js"]
     }
   ],
   "browser_action": {
     "default_icon": "icon.png"
   }, 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js"],
+    "persistent": false
   }, 
     "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
     "chrome_url_overrides" : {
       "newtab": "index.html"
     },
     "permissions": [
-      "https://api.flickr.com/"
+      "activeTab", 
+      "storage",
+      "https://api.flickr.com/",
+      "webRequest"
     ]
   }

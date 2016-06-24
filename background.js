@@ -1,24 +1,35 @@
-// Called when the user clicks on the browser action.
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//   // Send a message to the active tab
-// //   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-// //     var activeTab = tabs[0];
-// //     chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
-// //   });
-// // });
+$(document).ready(function(){
+  $("body").css("background", "darkgray");
 
-// // chrome.runtime.onMessage.addListener(
-// //   function(request, sender, sendResponse) {
-// //     if( request.message === "open_new_tab" ) {
-// //       chrome.tabs.create({"url": request.url});
-// //     }
-  
-// });
+  var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getPublicList&api_key=e4aee99e08367dcf3791594e042828f2&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1&auth_token=72157670098762976-5668f4a4d757dba0&api_sig=8d79789f68129a8d2aadf865f4fd355d", method: "get"});
 
+  var allPhotos = response.done(function(photos) {
+    var pArray = getMatchingTagArray(grabPhotoObjects(photos));
+    var background = returnSpecificImage(pArray);
+    var image = "https://farm"+background.farm+".staticflickr.com/"+background.server+"/"+background.id+"_"+background.secret+"_b.jpg"
+    $.backstretch(image);
 
-chrome.tabs.onCreated.addListener(function(tab){
-  // send a message to content that says that someone clicked  
-  chrome.tabs.sendMessage({"message": "hi_there"});
-
-
+  });
 });
+
+function grabPhotoObjects(response) {
+  // console.log(response.photos.photo)
+  return response.photos.photo;
+};
+
+
+function getMatchingTagArray(allObjects) {
+  var countryPics = [];
+  allObjects.forEach(function(picture){
+    if(picture.tags.includes("japan")){
+      countryPics.push(picture); 
+    };
+  });
+  return countryPics;
+};
+
+function returnSpecificImage(array) {
+  var image = array[Math.floor(Math.random() * array.length)];
+  return image
+};
+
