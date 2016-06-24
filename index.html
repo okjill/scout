@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 <head>
-  <title></title>
+  <title>Scout</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scout</title>
+    <link rel="icon"
+      type="image/png"
+      href="icon-sm.png">
   <!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> -->
 <!--   <script>
    // Initialize Firebase
@@ -19,8 +25,23 @@
   <script type="text/javascript" src="jquery.backstretch.min.js"></script>
   <script type="text/javascript" src="fakeLoader.min.js"></script>
   <link rel="stylesheet" href="fakeLoader.css">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-<div id="fakeLoader"></div>
+  <div class="container">
+    <nav id="bt-menu" class="bt-menu">
+      <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+      <ul>
+        <li><a href="#" class="">Jill</a></li>
+        <li><a href="#" class="">Emma</a></li>
+        <li><a href="#" class="">Sangmee</a></li>
+        <li><a href="#" class="">Jen</a></li>
+      </ul>
+    </nav>
+  </div><!-- /container -->
+  <div id="fakeLoader"></div>
 </body>
+  <script src="js/classie.js"></script>
+  <script src="js/borderMenu.js"></script>
 </html>
