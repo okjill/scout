@@ -21,6 +21,7 @@
       "newtab": "index.html"
     },
     "permissions": [
-      "https://api.flickr.com/"
+      "https://api.flickr.com/",
+      "identity"
     ]
   }
