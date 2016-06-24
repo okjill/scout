@@ -15,5 +15,12 @@
   }, 
   "background": {
     "scripts": ["background.js"]
+  }, 
+    "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
+    "chrome_url_overrides" : {
+      "newtab": "index.html"
+    },
+    "permissions": [
+      "https://api.flickr.com/"
+    ]
   }
-}
