@@ -4,6 +4,9 @@
   "version": "0.1",
   "content_scripts": [
     {
+      "matches": [
+        "<all_urls>"
+      ],
       "js": ["jquery-3.0.0.min.js","jquery.backstretch.min.js", "fakeLoader.min.js", "content.js"]
     }
   ],
