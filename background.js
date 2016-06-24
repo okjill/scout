@@ -6,7 +6,7 @@ $(document).ready(function(){
             zIndex:999, // Default zIndex
             spinner:"spinner1",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
             bgColor:"#6E6464", //Hex, RGB or RGBA colors
-            // imagePath:"yourPath/customizedImage.gif" //If you want can you insert your custom image       
+            // imagePath:"icon-sm.png" //If you want can you insert your custom image       
     });
 
 
@@ -30,7 +30,7 @@ function grabPhotoObjects(response) {
 function getMatchingTagArray(allObjects) {
   var countryPics = [];
   allObjects.forEach(function(picture){
-    if(picture.tags.includes("paris")){
+    if(picture.tags.includes("sydney")){
       countryPics.push(picture); 
     };
   });
