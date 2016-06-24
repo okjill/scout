@@ -24,7 +24,6 @@
     "permissions": [
       "activeTab", 
       "storage",
-      "https://api.flickr.com/",
-      "webRequest"
+      "https://api.flickr.com/"
     ]
   }
