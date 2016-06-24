@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.1",
+  "version": "0.2",
   "content_scripts": [
     {
       "js": ["jquery-3.0.0.min.js","jquery.backstretch.min.js", "fakeLoader.min.js", "content.js"]
