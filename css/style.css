@@ -10,6 +10,10 @@ body  {
 	background: #6E6464;
 }
 
+.fa-cog {
+	color: white;
+}
+
 .container {
 	padding: 80px;
 }
