@@ -4,6 +4,10 @@
   <title>Scout</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- // attempting manual sign in -->
+    <meta name="google-signin-client_id" content="822191055223-5cnu9lqq0nclp2uaq5g0kk5enfnvqa16.apps.googleusercontent.com">
+    <meta name="google-signin-cookiepolicy" content="single_host_origin">
+    <meta name="google-signin-scope" content="profile email">
     <title>Scout</title>
     <link rel="icon"
       type="image/png"
@@ -33,10 +37,10 @@
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
-        <li><a href="#" class="">Jill</a></li>
-        <li><a href="#" class="">Emma</a></li>
+        <li><a href="#" onclick="signOut();">Sign out</a></li>
+        <li><a href="" class="">Emma</a></li>
         <li><a href="#" class="">Sangmee</a></li>
-        <li><a href="#" class="">Jen</a></li>
+        <li><a href="" class="g-signin2 signin" data-onsuccess="onSignIn">Emma</a></li>
       </ul>
     </nav>
   </div><!-- /container -->
@@ -46,4 +50,30 @@
   <script src="js/user.js"></script>
   <script src="js/classie.js"></script>
   <script src="js/borderMenu.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Script to sign out, attached to link. -->
+  <script>function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+          console.log('User signed out.');
+          });
+        }
+  </script>
+
+  <!-- Script to sign in, attached to button. -->
+  <script>
+    function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+}
+  </script>
 </html>
+
+
+
+
+
+
