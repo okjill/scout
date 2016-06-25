@@ -10,27 +10,21 @@ function addNewUser(emailAddress) {
 	console.log(emailAddress)
 };
 
-function addDestination(place) {
-	// find user by their id through a current user function 
-	// locate destination ID
-	// push on destination true
-	// add user to the destinations 
-	// var user = FIND CURRENT USER METHOD
-	usersRef.child("jen/destinations").push({[place]: true});
-// PUSH IN CURRENT USER INSTEAD OF HARD CODE
-	destinationsRef.child(place).child("users").push({"jen": true});
+function getCurrentUser() {
+	var currentUser = ref.getAuth().uid;
+	console.log(currentUser)
 };
 
+function addDestination(currentUser, place) {
+	usersRef.child(currentUser+"/destinations").push({[place]: true});
+	destinationsRef.child(place).child("users").push({[currentUser]: true});
+};
 
 function showAllDestinations() {
-	var destinations = [];
 	destinationsRef.on('child_added', function(snapshot){
-		destinations.push(snapshot.val().name);
-		$("body").append("<div>"+destinations+"</div>")
+		$("body").append("<div>"+snapshot.val().name+"</div>")
 	});
-	return destinations 
-};
-
+};n
 
 
 function grabNameofDestination(placeKey){
@@ -53,13 +47,11 @@ function showAllOfUsersDestinations() {
 
 
 
-
-
 function deleteDestination() {
 
 };
 
-function deleteUser() {
-
+function deleteUser(userKey) {
+	usersRef.child(userKey).remove();
 };
 
