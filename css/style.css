@@ -10,10 +10,6 @@ body  {
 	background: #6E6464;
 }
 
-.fa-cog {
-	color: white;
-}
-
 .container {
 	padding: 80px;
 }
@@ -161,11 +157,11 @@ body  {
 	transform: translate3d(0,100%,0);
 }
 
-.bt-menu ul li:nth-child(2) {
+.bt-menu ul li:nth-child(1) {
 	margin-right: 70px;
 }
 
-.bt-menu ul li:nth-child(3) {
+.bt-menu ul li:nth-child(2) {
 	margin-left: 70px;
 }
 
@@ -232,7 +228,7 @@ body  {
 	}
 
 	.bt-menu ul li a {
-		font-size: 0px;
+		font-size: 70%;
 	}
 
 	.bt-menu ul li a:before {

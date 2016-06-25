@@ -119,6 +119,8 @@
           var refreshToken = user.refreshToken;
           var providerData = user.providerData;
           // [START_EXCLUDE]
+          // Keep = shows user email on login
+          document.getElementById("email").innerHTML = 'Welcome, ' + email + "!";
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
           document.getElementById('quickstart-sign-in').textContent = 'Sign out';
           document.getElementById('quickstart-account-details').textContent = JSON.stringify({
@@ -135,6 +137,7 @@
         } else {
           // User is signed out.
           // [START_EXCLUDE]
+          document.getElementById("email").innerHTML = 'Welcome!';
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
           document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
           document.getElementById('quickstart-account-details').textContent = 'null';
@@ -171,16 +174,20 @@
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
         <li><a a href="#settings" rel="modal:open"class="">Settings</a></li>
-        <li><a href="#" class="">Emma</a></li>
-        <li><a href="#" class="">Sangmee</a></li>
-        <li><a href="#" class="">Jen</a></li>
+        <li><a a href="#destinations" rel="modal:open"class="">Destinations</a></li>
       </ul>
     </nav>
     <!-- Settings Modal -->
     <div id="settings" style="display:none;">
+      <h3 id="email">Welcome:</h3>
+      <hr>
       <!-- Button that handles sign-in/sign-out -->
       <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button> <!-- <a href="#" rel="modal:close">Close</a><p>or press ESC</p> -->
-   </div>
+    </div>
+    <div id="destinations" style="display:none;">
+      <h3>Your Destinations:</h3>
+      <hr>
+    </div>
   </div><!-- /container -->
   <div id="fakeLoader"></div>
 </body>
