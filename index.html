@@ -2,16 +2,13 @@
 <html lang="en" class="no-js">
 <head>
   <title>Scout</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- // attempting manual sign in -->
-    <meta name="google-signin-client_id" content="822191055223-5cnu9lqq0nclp2uaq5g0kk5enfnvqa16.apps.googleusercontent.com">
-    <meta name="google-signin-cookiepolicy" content="single_host_origin">
-    <meta name="google-signin-scope" content="profile email">
-    <title>Scout</title>
-    <link rel="icon"
-      type="image/png"
-      href="icon-sm.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scout</title>
+  <link rel="icon" type="image/png" href="icon-sm.png">
+  <!-- FontAwesome
+  <script src="https://use.fontawesome.com/07aaf385cb.js"></script>-->
+  <!-- this is required but causes an error -->
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script>
    // Initialize Firebase
@@ -31,45 +28,164 @@
   <link rel="stylesheet" href="fakeLoader.css">
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
+  <!-- Start login/logout script -->
+  <script type="text/javascript">
+    /**
+     * Function called when clicking the Login/Logout button.
+     */
+    // [START buttoncallback]
+    function toggleSignIn() {
+      if (!firebase.auth().currentUser) {
+        // [START createprovider]
+        var provider = new firebase.auth.GoogleAuthProvider();
+        // [END createprovider]
+        // [START addscopes]
+        provider.addScope('https://www.googleapis.com/auth/plus.login');
+        // [END addscopes]
+        // [START signin]
+        firebase.auth().signInWithRedirect(provider);
+        // [END signin]
+      } else {
+        // [START signout]
+        firebase.auth().signOut();
+        // [END signout]
+      }
+      // [START_EXCLUDE]
+      document.getElementById('quickstart-sign-in').disabled = true;
+      // [END_EXCLUDE]
+    }
+    // [END buttoncallback]
+    /**
+     * initApp handles setting up the Firebase context and registering
+     * callbacks for the auth status.
+     *
+     * The core initialization is in firebase.App - this is the glue class
+     * which stores configuration. We provide an app name here to allow
+     * distinguishing multiple app instances.
+     *
+     * This method also registers a listener with firebase.auth().onAuthStateChanged.
+     * This listener is called when the user is signed in or out, and that
+     * is where we update the UI.
+     *
+     * When signed in, we also authenticate to the Firebase Realtime Database.
+     */
+    function initApp() {
+      // Result from Redirect auth flow.
+      // [START getidptoken]
+      firebase.auth().getRedirectResult().then(function(result) {
+        if (result.credential) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = result.credential.accessToken;
+          // [START_EXCLUDE]
+          document.getElementById('quickstart-oauthtoken').textContent = token;
+        } else {
+          document.getElementById('quickstart-oauthtoken').textContent = 'null';
+          // [END_EXCLUDE]
+        }
+        // The signed-in user info.
+        var user = result.user;
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // [START_EXCLUDE]
+        if (errorCode === 'auth/account-exists-with-different-credential') {
+          alert('You have already signed up with a different auth provider for that email.');
+          // If you are using multiple auth providers on your app you should handle linking
+          // the user's accounts here.
+        } else {
+          console.error(error);
+        }
+        // [END_EXCLUDE]
+      });
+      // [END getidptoken]
+      // Listening for auth state changes.
+      // [START authstatelistener]
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var refreshToken = user.refreshToken;
+          var providerData = user.providerData;
+          // [START_EXCLUDE]
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+          document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+          document.getElementById('quickstart-account-details').textContent = JSON.stringify({
+            displayName: displayName,
+            email: email,
+            emailVerified: emailVerified,
+            photoURL: photoURL,
+            isAnonymous: isAnonymous,
+            uid: uid,
+            refreshToken: refreshToken,
+            providerData: providerData
+          }, null, '  ');
+          // [END_EXCLUDE]
+        } else {
+          // User is signed out.
+          // [START_EXCLUDE]
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+          document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
+          document.getElementById('quickstart-account-details').textContent = 'null';
+          document.getElementById('quickstart-oauthtoken').textContent = 'null';
+          // [END_EXCLUDE]
+        }
+        // [START_EXCLUDE]
+        document.getElementById('quickstart-sign-in').disabled = false;
+        // [END_EXCLUDE]
+      });
+      // [END authstatelistener]
+      document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
+    }
+    window.onload = function() {
+      initApp();
+    };
+  </script>
 </head>
 <body>
+  <div class="container">
+
+    <!-- Container where we'll display the user details -->
+    <div class="quickstart-user-details-container">
+      Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+      <div>Firebase auth <code>currentUser</code> object value:</div>
+      <pre><code id="quickstart-account-details">null</code></pre>
+      <div>Google OAuth Access Token:</div>
+      <pre><code id="quickstart-oauthtoken">null</code></pre>
+    </div>
+  </div>
+
   <div class="container">
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
-        <li><a href="#" onclick="signOut();">Sign out</a></li>
-        <li><a href="" class="">Emma</a></li>
+        <li><a a href="#settings" rel="modal:open"class="">Settings</a></li>
+        <li><a href="#" class="">Emma</a></li>
         <li><a href="#" class="">Sangmee</a></li>
-        <li><a href="" class="g-signin2 signin" data-onsuccess="onSignIn">Emma</a></li>
+        <li><a href="#" class="">Jen</a></li>
       </ul>
     </nav>
+    <!-- Settings Modal -->
+    <div id="settings" style="display:none;">
+      <!-- Button that handles sign-in/sign-out -->
+      <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button> <!-- <a href="#" rel="modal:close">Close</a><p>or press ESC</p> -->
+   </div>
   </div><!-- /container -->
   <div id="fakeLoader"></div>
 </body>
-  <script src="js/auth.js"></script>
-  <script src="js/user.js"></script>
   <script src="js/classie.js"></script>
   <script src="js/borderMenu.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <!-- Script to sign out, attached to link. -->
-  <script>function signOut() {
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-          console.log('User signed out.');
-          });
-        }
-  </script>
-
-  <!-- Script to sign in, attached to button. -->
-  <script>
-    function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
-}
-  </script>
 </html>
 
 
