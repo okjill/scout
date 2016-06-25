@@ -23,18 +23,37 @@ function addDestination(place) {
 
 
 function showAllDestinations() {
+	var destinations = [];
 	destinationsRef.on('child_added', function(snapshot){
-		var destinations = [];
 		destinations.push(snapshot.val().name);
-		$("body").append("<div>"+destinations[0]+"</div>")
+		$("body").append("<div>"+destinations+"</div>")
+	});
+	return destinations 
+};
+
+
+
+function grabNameofDestination(placeKey){
+	destinationsRef.orderByKey().equalTo(placeKey).on('child_added', function(snapshot){
+			console.log(snapshot.val().name);
 	});
 };
 
 
 function showAllOfUsersDestinations() {
-	usersRef.
-
+	usersRef.child('jen/destinations').orderByKey().on('child_added', function(snapshot){
+		snapshot.forEach(function(destination){
+			var destinations = [];
+			destinations.push(grabNameofDestination(destination.key()));
+			$("body").append("<div>"+destinations+"</div>")
+		return destinations
+		});
+	});
 };
+
+
+
+
 
 function deleteDestination() {
 
@@ -43,3 +62,4 @@ function deleteDestination() {
 function deleteUser() {
 
 };
+
