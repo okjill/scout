@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.2",
+  "version": "0.25",
   "content_scripts": [
     {
       "matches": [
