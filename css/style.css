@@ -211,6 +211,11 @@ body  {
 	color: #E6E6E6;
 }
 
+/*gets rid of annoying blue box on focus (webkit)*/
+.no-focus:focus {
+	outline: none;
+}
+
 @media screen and (max-width: 65.1em) {
 	.bt-menu ul li a {
 		font-size: 90%;
