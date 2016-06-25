@@ -15,13 +15,31 @@ function addDestination(place) {
 	// locate destination ID
 	// push on destination true
 	// add user to the destinations 
-
 	// var user = FIND CURRENT USER METHOD
-
 	usersRef.child("jen/destinations").push({[place]: true});
-
 // PUSH IN CURRENT USER INSTEAD OF HARD CODE
 	destinationsRef.child(place).child("users").push({"jen": true});
+};
 
-	// console.log(user)
+
+function showAllDestinations() {
+	destinationsRef.on('child_added', function(snapshot){
+		var destinations = [];
+		destinations.push(snapshot.val().name);
+		$("body").append("<div>"+destinations[0]+"</div>")
+	});
+};
+
+
+function showAllOfUsersDestinations() {
+	usersRef.
+
+};
+
+function deleteDestination() {
+
+};
+
+function deleteUser() {
+
 };
