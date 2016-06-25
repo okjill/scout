@@ -1,0 +1,61 @@
+{
+  "users": {
+    "emma": {
+      "email": "emma@ritcey.com",
+      "destinations": { 
+        "boraBora": true, 
+        "casablanca": true
+      }
+    },
+    "jen": { 
+      "email": "jennifer@cross.com",
+      "destinations": { 
+        "boraBora": true, 
+        "delhi": true
+      }
+    },
+    "sangmee": { 
+      "email": "sangmee@specht.com",
+      "destinations": { 
+        "boraBora": true, 
+        "nairobi": true,
+        "dublin": true
+      }
+    }
+  },
+
+  "destinations": {
+    "boraBora": {
+      "name": "Bora Bora", 
+      "users": {
+        "emma": true, 
+        "jen": true,
+        "sangmee": true
+      }
+    },
+    "casablanca": {
+      "name": "Casablanca", 
+      "users": {
+        "emma": true
+      }
+    },
+    "delhi": {
+      "name": "Delhi",
+      "users": {
+        "jen": true
+      }
+    },
+    "nairobi": {
+      "name": "Nairobi", 
+      "users": {
+        "sangmee": true
+      }
+    },
+    "dublin": {
+      "name": "Dublin", 
+      "users": {
+        "sangmee": true
+      }
+    }
+  }
+}
