@@ -64,7 +64,7 @@ function showEmmaDestinations() {
 }
 
 function addJenDestination() {
-  ref.child("users/jen/destinations").push({ 'tokyo': true });
+  ref.child("users/jen/destinations").push({ 'paris': true });
 
   destinationsRef.update({
     tokyo: {

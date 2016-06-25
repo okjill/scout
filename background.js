@@ -30,7 +30,7 @@ function grabPhotoObjects(response) {
 function getMatchingTagArray(allObjects) {
   var countryPics = [];
   allObjects.forEach(function(picture){
-    if(picture.tags.includes("sydney")){
+    if(picture.tags.includes("barcelona")){
       countryPics.push(picture); 
     };
   });
