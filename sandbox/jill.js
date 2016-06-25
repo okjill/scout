@@ -47,11 +47,11 @@ function showAllUsers() {
   });
 }
 
-function showAllDestinations() {
-  destinationsRef.orderByChild("name").on("child_added", function(snapshot) {
-    console.log(snapshot.key());
-  });
-}
+// function showAllDestinations() {
+//   destinationsRef.orderByChild("name").on("child_added", function(snapshot) {
+//     console.log("key", snapshot.val().name);
+//   });
+// }
 
 function showEmmaDestinations() {
   ref.child("users/emma/destinations").on('child_added', function(snapshot) {
