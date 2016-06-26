@@ -10,10 +10,14 @@
 <body>
   <button id="show-mine" onclick="showUserDestinations()">See My Destinations</button>  
   <button id="show-all" onclick="showAllDestinations()">See All Destinations</button>
-  <button id="add-note" onclick="addDestinationNote('dublin', 'note, note, note')">Add note to destination</button>
+  <button id="add-note" onclick="addDestinationNote('boraBora', 'Bora Bora notes')">Add note to destination</button>
+  <button id="edit-note" onclick="editDestinationNote('boraBora', 'Bora Bora notes have been edited')">Edit destination note</button>
+  <button id="show-note" onclick="showDestinationNote('boraBora')">Show destination's notes</button>
+  <button id="delete-note" onclick="deleteDestinationNote('boraBora')">Delete destination's notes</button>
 
   <h3>My Destinations</h3>
   <div id="user-destinations"></div>
+  <div id="user-destination-notes"></div>
 
   <h3>All Destinations</h3>
   <div id="all-destinations"></div>
