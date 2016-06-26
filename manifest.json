@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.25",
+  "version": "0.27",
   "content_scripts": [
     {
       "matches": [
@@ -10,9 +10,6 @@
       "js": ["jquery-3.0.0.min.js","jquery.backstretch.min.js", "fakeLoader.min.js", "content.js"]
     }
   ],
-  "browser_action": {
-    "default_icon": "icon.png"
-  }, 
   "background": {
     "scripts": ["jquery-3.0.0.min.js", "background.js"],
     "persistent": false
