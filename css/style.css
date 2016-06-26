@@ -7,11 +7,12 @@
 }
 
 body  {
-	background: #6E6464;
+	background-color: #6E6464;
+	font-family: 'Lato', sans-serif;
 }
 
-.fa-cog {
-	color: white;
+h1, h2, h3, h4 {
+	font-family: 'Quicksand', sans-serif;
 }
 
 .container {
@@ -161,12 +162,16 @@ body  {
 	transform: translate3d(0,100%,0);
 }
 
+.bt-menu ul li:nth-child(1) {
+	margin-left: -20px;
+}
+
 .bt-menu ul li:nth-child(2) {
-	margin-right: 70px;
+	margin-right: 150px;
 }
 
 .bt-menu ul li:nth-child(3) {
-	margin-left: 70px;
+	margin-left: 150px;
 }
 
 .bt-menu.bt-menu-open ul li {
@@ -220,6 +225,39 @@ body  {
 	outline: none;
 }
 
+.modal {
+	background-color: #E6E6E6;
+}
+
+.destination {
+	width: auto;
+	height: 50px;
+	margin: 5px 5px;
+	background-color: #6E6464;
+	text-align: center;
+	display: inline-block;
+	padding: 10px;
+}
+
+.destination a {
+	color: #E6E6E6;
+	margin: 0;
+	font-size: x-large;
+	text-decoration: none;
+	outline: 0;
+}
+
+/* mouse over link */
+.destination:hover {
+    background-color: #E24207;
+}
+
+.travel-quote {
+	padding-top: 10px;
+  padding-left: 80px;
+}
+
+
 @media screen and (max-width: 65.1em) {
 	.bt-menu ul li a {
 		font-size: 90%;
@@ -227,12 +265,22 @@ body  {
 }
 
 @media screen and (max-width: 55.5em) {
-	.bt-menu ul li {
-		margin: 0 15px;
+	.bt-menu ul li:nth-child(1) {
+		margin-left: -0px;
+		margin-right: 40px;
+	}
+
+	.bt-menu ul li:nth-child(2) {
+		margin-right: 100px;
+	}
+
+	.bt-menu ul li:nth-child(3) {
+		margin-left: 100px;
+		margin-right: 40px;
 	}
 
 	.bt-menu ul li a {
-		font-size: 0px;
+		font-size: 80%;
 	}
 
 	.bt-menu ul li a:before {
