@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.25",
+  "version": "0.28",
   "content_scripts": [
     {
       "matches": [
@@ -10,11 +10,8 @@
       "js": ["jquery-3.0.0.min.js","jquery.backstretch.min.js", "fakeLoader.min.js", "content.js"]
     }
   ],
-  "browser_action": {
-    "default_icon": "icon.png"
-  }, 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["jquery-3.0.0.min.js", "background.js"],
     "persistent": false
   }, 
     "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
