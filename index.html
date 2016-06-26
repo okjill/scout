@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scout</title>
-  <link rel="icon" type="image/png" href="icon-sm.png">
+  <!-- <link rel="icon" type="image/png" href="icon-sm.png"> -->
   <!-- FontAwesome
   <script src="https://use.fontawesome.com/07aaf385cb.js"></script>-->
   <!-- this is required but causes an error -->
@@ -25,6 +25,11 @@
   <link rel="stylesheet" type="text/css" href="application.css">
   <script type="text/javascript" src="jquery.backstretch.min.js"></script>
   <script type="text/javascript" src="fakeLoader.min.js"></script>
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="fakeLoader.css">
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -50,6 +55,7 @@
       } else {
         // [START signout]
         firebase.auth().signOut();
+
         // [END signout]
       }
       // [START_EXCLUDE]
@@ -119,6 +125,7 @@
           var refreshToken = user.refreshToken;
           var providerData = user.providerData;
           // [START_EXCLUDE]
+          document.getElementById('user-loggedin').textContent = "Welcome, " + email + "!";
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
           document.getElementById('quickstart-sign-in').textContent = 'Sign out';
           document.getElementById('quickstart-account-details').textContent = JSON.stringify({
@@ -135,6 +142,7 @@
         } else {
           // User is signed out.
           // [START_EXCLUDE]
+          document.getElementById('user-loggedin').textContent = "Hey there, log in with Google and get started using Scout!";
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
           document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
           document.getElementById('quickstart-account-details').textContent = 'null';
@@ -170,16 +178,45 @@
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
-        <li><a a href="#settings" rel="modal:open"class="">Settings</a></li>
-        <li><a href="#" class="">Emma</a></li>
-        <li><a href="#" class="">Sangmee</a></li>
-        <li><a href="#" class="">Jen</a></li>
+        <li><a a href="#settings" rel="modal:open" class="">Settings</a></li>
+        <li><a href="#quote" rel="modal:open" class="">Quotes</a></li>
+        <li><a a href="#settings" rel="modal:open" class="">Settings</a></li>
+        <li><a href="#destinations" rel="modal:open" class="">Destinations</a></li>
       </ul>
     </nav>
     <!-- Settings Modal -->
     <div id="settings" style="display:none;">
+      <h2 id='user-loggedin'>Settings:</h2>
+      <hr>
       <!-- Button that handles sign-in/sign-out -->
-      <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button> <!-- <a href="#" rel="modal:close">Close</a><p>or press ESC</p> -->
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button>
+    </div>
+    <!-- Settings Modal -->
+    <div id="quote" style="display:none;">
+      <h2 id='user-loggedin'>Travel Quote of the Day:</h2>
+      <hr>
+      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=FFFFFF&color=333333&font=lato&size=18" width="400" height="200" frameborder="0"></iframe>
+    </div>
+    <!-- Destinations Modal -->
+    <div id="destinations" style="display:none;">
+      <h2>Available Destinations (click to add):</h2>
+      <hr>
+      <div class="destination">
+        <a href="#">Antidisestablishmentarianism</a>
+      </div>
+      <div class="destination">
+        <a href="#">Italy</a>
+      </div>
+      <div class="destination">
+        <a href="#">France</a>
+      </div>
+      <div class="destination">
+        <a href="#">Netherland Antilles</a>
+      </div>
+      <div class="destination">
+        <a href="#">Caracas</a>
+      </div>
    </div>
   </div><!-- /container -->
   <div id="fakeLoader"></div>
