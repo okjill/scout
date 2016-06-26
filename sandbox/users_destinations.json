@@ -21,6 +21,12 @@
         "nairobi": true,
         "dublin": true
       }
+    },
+    "jill": {
+      "email": "jill@moore.com",
+      "destinations": {
+        "zurich": true
+      }
     }
   },
 
@@ -48,13 +54,20 @@
     "nairobi": {
       "name": "Nairobi", 
       "users": {
-        "sangmee": true
+        "sangmee": true,
+        "jill": true
       }
     },
     "dublin": {
       "name": "Dublin", 
       "users": {
         "sangmee": true
+      }
+    },
+    "zurich": {
+      "name": "Zurich",
+      "users": {
+        "jill": true
       }
     }
   }
