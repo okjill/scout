@@ -13,6 +13,7 @@ body  {
 
 h1, h2, h3, h4 {
 	font-family: 'Quicksand', sans-serif;
+	margin-top: 5px;
 }
 
 .container {
@@ -252,11 +253,27 @@ h1, h2, h3, h4 {
     background-color: #E24207;
 }
 
-.travel-quote {
-	padding-top: 10px;
-  padding-left: 80px;
+.fa {
+	margin-left: 15px;
 }
 
+.travel-quote {
+	padding-top: 10px;
+	margin-left: 80px;
+}
+
+.available {
+	margin-top: 40px;
+}
+
+.edit-note {
+	height: 400px;
+}
+
+textarea {
+	min-width: 485px;
+	min-height: 375px;
+}
 
 @media screen and (max-width: 65.1em) {
 	.bt-menu ul li a {
