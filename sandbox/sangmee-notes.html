@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jill's Sunday Sandbox</title>
+  <link rel="stylesheet" type="text/css" href="jill_sat.css">
+  <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+  <script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
+  <script type="text/javascript" src="sangmee-notes.js"></script>
+</head>
+<body>
+  <button id="show-mine" onclick="showUserDestinations()">See My Destinations</button>  
+  <button id="show-all" onclick="showAllDestinations()">See All Destinations</button>
+  <button id="add-note" onclick="addDestinationNote('dublin', 'note, note, note')">Add note to destination</button>
+
+  <h3>My Destinations</h3>
+  <div id="user-destinations"></div>
+
+  <h3>All Destinations</h3>
+  <div id="all-destinations"></div>
+</body>
+</html>
