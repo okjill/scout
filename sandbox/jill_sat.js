@@ -6,19 +6,25 @@ var currentUserNode = usersRef.child(uid + '/destinations');
 var destinationsRef = ref.child('destinations');
 
 function showUserDestinations() {
-  currentUserNode.orderByKey().on('child_added', function(snapshot){
-    destinationsRef.orderByKey().equalTo(snapshot.key()).on('child_added', function(snapshot){
-        var destinationName = snapshot.val().name;
-        $('#user-destinations').append('<p>' + destinationName + '</p>');
+  currentUserNode.orderByKey().on('child_added', function(snapshot) {
+    destinationsRef.orderByKey().equalTo(snapshot.key()).on('child_added', function(snapshot) {
+      var destinationName = snapshot.val().name;  
+      var destinationKey = snapshot.key();
+      $("#user-destinations").append("<p id=\"single-user-destination\">" + destinationName + " <button id=\"remove\" onclick=\"deleteDestination('" + destinationKey + "')\">Remove</button></p>");
+      $("button#remove").click(function() {
+        var $this = $(this);
+        var node = $(this).closest("p").remove();
+        $(this).remove();
+      })
     });
   });
 }
 
 function showAllDestinations() {
-  destinationsRef.on("child_added", function(snapshot){
+  destinationsRef.on("child_added", function(snapshot) {
     var destinationName = snapshot.val().name;  
     var destinationKey = snapshot.key();
-
+    
     $("#all-destinations").append("<p>" + destinationName + " <button onclick=\"saveDestination('" + destinationKey + "')\">Save</button></p>");
   });
 }
@@ -28,26 +34,7 @@ function saveDestination(destination) {
   destinationsRef.child(destination).child('users').update({[uid]: true});
 }
 
-function deleteDestination(place) {
-  function placeToDelete() {
-    return place;
-  };
-
-  // delete user's destination
-    currentUserNode.orderByKey().on('child_added', function(snapshot) {
-    
-    snapshot.forEach(function(destination){
-      if(destination.key() == placeToDelete()) {
-        var snapshotKey = snapshot.key();
-        var removeRef = usersRef.child("sangmee/destinations/" + snapshotKey + "/" + placeToDelete());
-        removeRef.remove();
-      };
-    });
-  });
-
-  // delete destination's user
-    destinationsRef.orderByKey().equalTo(placeToDelete()).on('child_added', function(snapshot) {
-    var removeRef = destinationsRef.child(placeToDelete() + "/users/" + uid);
-    removeRef.remove();
-  });
-};
+function deleteDestination(destination) {
+  currentUserNode.update({[destination]: null});
+  destinationsRef.child(destination).child('users').update({[uid]: null});
+}
