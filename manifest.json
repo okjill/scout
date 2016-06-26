@@ -14,7 +14,7 @@
     "default_icon": "icon.png"
   }, 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["jquery-3.0.0.min.js", "background.js"],
     "persistent": false
   }, 
     "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
