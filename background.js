@@ -7,7 +7,7 @@
    };
    firebase.initializeApp(config);
 
-}())
+}());
 
 (function(){
    /**
@@ -86,7 +86,11 @@
       // Listening for auth state changes.
       // [START authstatelistener]
       firebase.auth().onAuthStateChanged(function(user) {
+        // var usersRef = firebase.database().ref('users').child("jen").toString();
+        var usersRef = firebase.database().ref('users');
+
         if (user) {
+          console.log("SUPER SIGNED IN AND STUFF")
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;
@@ -109,6 +113,10 @@
             refreshToken: refreshToken,
             providerData: providerData
           }, null, '  ');
+
+
+        var info = { email: user.email, destinations: {'boraBora': true} }
+        usersRef.push(info)
           // [END_EXCLUDE]
         } else {
           // User is signed out.
@@ -126,13 +134,13 @@
       // [END authstatelistener]
       document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
     }
-    
+
     window.onload = function() {
       initApp();
-      
+
     };
 
-}())
+}());
 
 
 $(document).ready(function(){
