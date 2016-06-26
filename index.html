@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scout</title>
   <!-- <link rel="icon" type="image/png" href="icon-sm.png"> -->
-  <!-- FontAwesome
-  <script src="https://use.fontawesome.com/07aaf385cb.js"></script>-->
+  <!-- FontAwesome-->
+  <script src="https://use.fontawesome.com/07aaf385cb.js"></script>
   <!-- this is required but causes an error -->
   <script src="firebase.js"></script>
 
@@ -32,7 +32,6 @@
 
 <body>
   <div class="container">
-
     <!-- Container where we'll display the user details -->
     <div class="quickstart-user-details-container">
       Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
@@ -47,33 +46,61 @@
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
-        <li><a a href="#settings" rel="modal:open" class="">Settings</a></li>
+        <li><a href="#settings" rel="modal:open" class="">Settings</a></li>
         <li><a href="#quote" rel="modal:open" class="">Quotes</a></li>
-        <li><a a href="#settings" rel="modal:open" class="">Settings</a></li>
+        <li><a href="#notes" rel="modal:open" class="">Notes</a></li>
         <li><a href="#destinations" rel="modal:open" class="">Destinations</a></li>
       </ul>
     </nav>
     <!-- Settings Modal -->
     <div id="settings" style="display:none;">
-      <h2 id='user-loggedin'>Settings:</h2>
+      <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>Settings:</h2>
       <hr>
       <!-- Button that handles sign-in/sign-out -->
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button>
     </div>
-    <!-- Settings Modal -->
+    <!-- Quotes Modal -->
     <div id="quote" style="display:none;">
-      <h2 id='user-loggedin'>Travel Quote of the Day:</h2>
+      <h2><i class="fa fa-quote-left fa-2x fa-pull-left" aria-hidden="true"></i>Travel Quote of the Day:</h2>
       <hr>
-      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=FFFFFF&color=333333&font=lato&size=18" width="400" height="200" frameborder="0"></iframe>
+      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=FFFFFF&color=333333&font=tahoma&size=18" width="330" height="200" frameborder="0"></iframe>
+    </div>
+    <!-- Notes Modals -->
+    <div id="notes" style="display:none;">
+      <h2><i class="fa fa-sticky-note-o fa-2x fa-pull-left" aria-hidden="true"></i>Your Notes <small>(click to view/edit):</small></h2>
+      <hr>
+      <div class="destination">
+        <a href="#view-note" rel="modal:open">View Antidisestablishmentarianism Note!</a>
+      </div>
+    </div>
+    <div id="view-note" style="display:none;">
+      <h2>VIEWING NOTE!!!!!</h2>
+      <hr>
+      <div class="note">
+        <p>This is totally a note with lots of stuff in it about places I want to go.</p>
+        <a href="#edit-note" rel="modal:open">Edit the Antidisestablishmentarianism Note </a>
+      </div>
+    </div>
+    <div id="edit-note" style="display:none;">
+      <h2><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Editing Note:</h2>
+      <hr>
+      <div class="edit-note">
+        <form>
+          <textarea></textarea>
+          </br>
+          <button>Save</button>
+        </form>
+      </div>
     </div>
     <!-- Destinations Modal -->
     <div id="destinations" style="display:none;">
-      <h2>Available Destinations (click to add):</h2>
+      <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
       <hr>
       <div class="destination">
         <a href="#">Antidisestablishmentarianism</a>
       </div>
+      <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
+      <hr>
       <div class="destination">
         <a href="#">Italy</a>
       </div>
