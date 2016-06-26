@@ -10,12 +10,10 @@ function showUserDestinations() {
     destinationsRef.orderByKey().equalTo(snapshot.key()).on('child_added', function(snapshot) {
       var destinationName = snapshot.val().name;  
       var destinationKey = snapshot.key();
-      $("#user-destinations").append("<p id=\"single-user-destination\">" + destinationName + " <button id=\"remove\" onclick=\"deleteDestination('" + destinationKey + "')\">Remove</button></p>");
-      $("button#remove").click(function() {
-        var $this = $(this);
-        var node = $(this).closest("p").remove();
-        $(this).remove();
-      })
+      var html = "<p class='remove' id='" + destinationKey + "'>" + destinationName + "</p>";
+      
+      $("#user-destinations").append(html);
+      dealWithButtons("remove", destinationKey);
     });
   });
 }
@@ -24,8 +22,10 @@ function showAllDestinations() {
   destinationsRef.on("child_added", function(snapshot) {
     var destinationName = snapshot.val().name;  
     var destinationKey = snapshot.key();
+    var html = "<p class='save' id='" + destinationKey + "'>" + destinationName + "</p>";
     
-    $("#all-destinations").append("<p>" + destinationName + " <button onclick=\"saveDestination('" + destinationKey + "')\">Save</button></p>");
+    $("#all-destinations").append(html);
+    dealWithButtons("save", destinationKey);
   });
 }
 
@@ -38,3 +38,43 @@ function deleteDestination(destination) {
   currentUserNode.update({[destination]: null});
   destinationsRef.child(destination).child('users').update({[uid]: null});
 }
+
+function dealWithButtons(action, destinationKey) {
+  if (action === "save") {
+    currentUserNode.once("value", function(snapshot) {
+      if (!snapshot.hasChild(destinationKey)) {
+        $("#all-destinations p#" + destinationKey).after("<button class='save' id='" + destinationKey + "'>Save</button>");
+      }
+    });
+  } else if (action === "remove") {
+    currentUserNode.once("value", function(snapshot) {
+      if (snapshot.hasChild(destinationKey)) {
+        $("#user-destinations p#" + destinationKey).after("<button class='remove' id='" + destinationKey + "'>Remove</button>");
+      }
+    });
+  }
+}
+
+function listenForButtonClicks() {
+  $(document).on("click", ".save", function() {
+    var $this = $(this);
+    saveDestination(this.id);
+    $this.remove();
+
+  });
+
+  $(document).on("click", ".remove", function() {
+    var $this = $(this);
+    deleteDestination(this.id);
+    $("#user-destinations p#" + this.id).remove();
+    $("#all-destinations p#" + this.id).after("<button class='save' id='" + this.id + "'>Save</button>");
+    $this.remove();
+  });
+}
+
+$(document).ready(function() {
+
+  listenForButtonClicks();
+
+});
+
