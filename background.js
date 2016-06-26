@@ -90,7 +90,6 @@
         var usersRef = firebase.database().ref('users');
 
         if (user) {
-          console.log("SUPER SIGNED IN AND STUFF")
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;
@@ -155,7 +154,7 @@ $(document).ready(function(){
     });
 
 
-  var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getPublicList&api_key=e4aee99e08367dcf3791594e042828f2&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1&auth_token=72157670098762976-5668f4a4d757dba0&api_sig=8d79789f68129a8d2aadf865f4fd355d", method: "get"});
+  var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getPublicList&api_key=7323d71df9858598dd027bd0b1dadef9&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1&auth_token=72157670174326456-2d8f4fffb8956f3f&api_sig=985abda1c6c0d32fb158202b0d96736d", method: "get"});
 
   var allPhotos = response.done(function(photos) {
     var pArray = getMatchingTagArray(grabPhotoObjects(photos));
