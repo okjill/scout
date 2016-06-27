@@ -54,3 +54,14 @@ function returnSpecificImage(array) {
   var image = array[Math.floor(Math.random() * array.length)];
   return image;
 };
+
+////////////////////////////////////////////////////////
+  var weatherResponse = $.get({url:"http://api.openweathermap.org/data/2.5/weather?q=chicago&units=imperial&appid=76b001f2621941cd5d249226db15ed15", method: "get"});
+
+  weatherResponse.done(function(weather){
+    console.log("weather!", weather.main.temp)
+    var temp = weather.main.temp
+    $("#weather").text(temp)
+  });
+
+
