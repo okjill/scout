@@ -154,7 +154,7 @@ $(document).ready(function(){
     });
 
 
-  var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getPublicList&api_key=7323d71df9858598dd027bd0b1dadef9&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1&auth_token=72157670174326456-2d8f4fffb8956f3f&api_sig=985abda1c6c0d32fb158202b0d96736d", method: "get"});
+  var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getList&api_key=15814abffa9beab837cad31506bd4eca&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1", method: "get"});
 
   var allPhotos = response.done(function(photos) {
     var pArray = getMatchingTagArray(grabPhotoObjects(photos));
