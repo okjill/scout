@@ -11,6 +11,7 @@
   <script src="third-party-files/07aaf385cb.js"></script>
   <!-- this is required but causes an error -->
 
+  <script src="ckeditor/ckeditor.js"></script>
   <script type="text/javascript" src="background.js"></script>
   <link rel="stylesheet" type="text/css" href="application.css">
   <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
@@ -27,20 +28,7 @@
   <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
 
 </head>
-
-
 <body>
-  <div class="container">
-    <!-- Container where we'll display the user details -->
-    <div class="quickstart-user-details-container">
-      Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-      <div>Firebase auth <code>currentUser</code> object value:</div>
-      <pre><code id="quickstart-account-details">null</code></pre>
-      <div>Google OAuth Access Token:</div>
-      <pre><code id="quickstart-oauthtoken">null</code></pre>
-    </div>
-  </div>
-
   <div class="container">
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
@@ -55,14 +43,12 @@
     <div id="settings" style="display:none;">
       <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>Settings:</h2>
       <hr>
-      <!-- Button that handles sign-in/sign-out -->
-      <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button>
     </div>
     <!-- Quotes Modal -->
     <div id="quote" style="display:none;">
       <h2><i class="fa fa-quote-left fa-2x fa-pull-left" aria-hidden="true"></i>Travel Quote of the Day:</h2>
       <hr>
-      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=FFFFFF&color=333333&font=tahoma&size=18" width="330" height="200" frameborder="0"></iframe>
+      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=E6E6E6&color=333333&font=tahoma&size=20" width="330" height="200" frameborder="0"></iframe>
     </div>
     <!-- Notes Modals -->
     <div id="notes" style="display:none;">
@@ -83,13 +69,10 @@
     <div id="edit-note" style="display:none;">
       <h2><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Editing Note:</h2>
       <hr>
-      <div class="edit-note">
-        <form>
-          <textarea></textarea>
-          </br>
-          <button>Save</button>
-        </form>
+      <div class="edit-note" id="note-editor">
+
       </div>
+      <button>Save</button>
     </div>
     <!-- Destinations Modal -->
     <div id="destinations" style="display:none;">
@@ -113,7 +96,6 @@
         <a href="#">Caracas</a>
       </div>
    </div>
-  </div><!-- /container -->
   <div id="fakeLoader"></div>
 </body>
   <script src="js/classie.js"></script>
