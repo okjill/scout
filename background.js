@@ -1,6 +1,8 @@
 $(document).ready(function(){
   $("body").css("background", "darkgray");
 
+  $("#note-editor").jqte();
+
   $("#fakeLoader").fakeLoader({
             timeToHide:1200, //Time in milliseconds for fakeLoader disappear
             zIndex:999, // Default zIndex
