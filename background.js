@@ -145,12 +145,14 @@
 $(document).ready(function(){
   $("body").css("background", "darkgray");
 
+  $("#note-editor").append("<script>CKEDITOR.replace( 'note-editor' );</script>")
+
   $("#fakeLoader").fakeLoader({
             timeToHide:1200, //Time in milliseconds for fakeLoader disappear
             zIndex:999, // Default zIndex
-            spinner:"spinner1",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
+            spinner:"spinner1",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
             bgColor:"#6E6464", //Hex, RGB or RGBA colors
-            // imagePath:"icon-sm.png" //If you want can you insert your custom image       
+            // imagePath:"icon-sm.png" //If you want can you insert your custom image
     });
 
 
@@ -175,7 +177,7 @@ function getMatchingTagArray(allObjects) {
   var countryPics = [];
   allObjects.forEach(function(picture){
     if(picture.tags.includes("barcelona")){
-      countryPics.push(picture); 
+      countryPics.push(picture);
     };
   });
   return countryPics;
