@@ -236,7 +236,6 @@ function addDestinationNote(place, note) {
 
 // edit a particular destination's notes
 // SAME AS ADD FUNCTION
-// DOES NOT REMOVE TAGS FOR THINGS LIKE BOLD, ITALICS, ETC.!!!
 function editDestinationNote(place, note) {
   chrome.storage.sync.get(function(database) {
     database.allDestinations.forEach(function(country){
@@ -248,7 +247,7 @@ function editDestinationNote(place, note) {
   });
 };
 
-// show note for particular destination & populates 
+// show note for particular destination & populates textbox with note
 function showDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
     database.allDestinations.forEach(function(country){
