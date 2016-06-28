@@ -98,9 +98,11 @@ $(document).ready(function(){
             bgColor:"#6E6464", //Hex, RGB or RGBA colors
             // imagePath:"icon-sm.png" //If you want can you insert your custom image
     });
+
   // populate notes from menu with places that have notes
   $("#note-menu").click(function() {
     $(".destination-name").remove();
+    $('#no-message').remove();
     showAllNotes();
   });
 
@@ -224,7 +226,7 @@ function textShowDestinationNote(place) {
 };
 
 // add a new note for a particular destination
-// WILL AUTOMATICALLY OVERWRITE ANY NOTES THAT ARE THERE ALREADY
+// WILL AUTOMATICALLY OVERWRITE ANY NOTES THAT ALREADY EXIST
 function addDestinationNote(place, note) {
   chrome.storage.sync.get(function(database) {
     database.allDestinations.forEach(function(country){
@@ -238,7 +240,6 @@ function addDestinationNote(place, note) {
 
 // edit a particular destination's notes
 // SAME AS ADD FUNCTION
-// DOES NOT REMOVE TAGS FOR THINGS LIKE BOLD, ITALICS, ETC.!!!
 function editDestinationNote(place, note) {
   chrome.storage.sync.get(function(database) {
     database.allDestinations.forEach(function(country){
@@ -250,13 +251,13 @@ function editDestinationNote(place, note) {
   });
 };
 
-// show note for particular destination & populates
+// show note for particular destination & populates textbox with note
 function showDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
     database.allDestinations.forEach(function(country){
       if(country.name == place) {
         $(".jqte_editor").html(country.note);
-        $("#note-description").text(country.note);
+        $("#note-description").html(country.note);
       };
     });
   });
@@ -274,14 +275,22 @@ function deleteDestinationNote(place) {
   });
 };
 
-// show all destinations that have notes
+// show all destinations that have notes or display message if there are no places with notes
 function showAllNotes() {
   chrome.storage.sync.get(function(database) {
+    var noNoteCount = 0;
     database.allDestinations.forEach(function(country){
       if(country.note != "") {
         $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
+      } else {
+        noNoteCount = noNoteCount + 1;
+      };
+      if(noNoteCount == database.allDestinations.length){
+        // $('#no-message').remove();
+        $('#notes').append('<p id="no-message">You have no new notes yet.</p>');
       };
     });
   });
 };
+
 // END NOTES /\
