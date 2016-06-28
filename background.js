@@ -275,20 +275,14 @@ function deleteDestinationNote(place) {
   });
 };
 
-// show all destinations that have notes or display message if there are no places with notes
+// show all destinations that have notes or display message if there are no destinations
 function showAllNotes() {
   chrome.storage.sync.get(function(database) {
-    var noNoteCount = 0;
+    if(database.allDestinations.length == 0) {
+      $('#notes').append('<p id="no-message">You have no new notes yet.</p>');
+    };
     database.allDestinations.forEach(function(country){
-      if(country.note != "") {
-        $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
-      } else {
-        noNoteCount = noNoteCount + 1;
-      };
-      if(noNoteCount == database.allDestinations.length){
-        // $('#no-message').remove();
-        $('#notes').append('<p id="no-message">You have no new notes yet.</p>');
-      };
+      $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
     });
   });
 };
