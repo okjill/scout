@@ -225,24 +225,10 @@ function textShowDestinationNote(place) {
   $("#edit-note-button").text("Edit the " +place+ " Note");
 };
 
-// add a new note for a particular destination
-// WILL AUTOMATICALLY OVERWRITE ANY NOTES THAT ALREADY EXIST
-function addDestinationNote(place, note) {
-  chrome.storage.sync.get(function(database) {
-    database.allDestinations.forEach(function(country){
-      if(country.name == place) {
-        country.note = note;
-      };
-    });
-    chrome.storage.sync.set(database);
-  });
-};
-
 // edit a particular destination's notes
-// SAME AS ADD FUNCTION
 function editDestinationNote(place, note) {
   chrome.storage.sync.get(function(database) {
-    database.allDestinations.forEach(function(country){
+    database.myDestinations.forEach(function(country){
       if(country.name == place) {
         country.note = note;
       };
@@ -251,10 +237,10 @@ function editDestinationNote(place, note) {
   });
 };
 
-// show note for particular destination & populates textbox with note
+// show note for particular destination & populate textbox with note 
 function showDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
-    database.allDestinations.forEach(function(country){
+    database.myDestinations.forEach(function(country){
       if(country.name == place) {
         $(".jqte_editor").html(country.note);
         $("#note-description").html(country.note);
@@ -263,33 +249,29 @@ function showDestinationNote(place) {
   });
 };
 
+// show all destinations that have notes or display message if there are no destinations
+function showAllNotes() {
+  console.log("hello!");
+  chrome.storage.sync.get(function(database) {
+    if(database.myDestinations.length == 0) {
+      $('#notes').append('<p id="no-message">You have no destinations saved yet.</p>');
+    };
+    database.myDestinations.forEach(function(country){
+      $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
+    });
+  });
+};
+
 // delete a particular destination's notes (replace destination notes with a blank string)
+// NOT NEEDED FOR NOW
 function deleteDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
-    database.allDestinations.forEach(function(country){
+    database.myDestinations.forEach(function(country){
       if(country.name == place) {
         country.note = "";
       };
     });
     chrome.storage.sync.set(database);
-  });
-};
-
-// show all destinations that have notes or display message if there are no places with notes
-function showAllNotes() {
-  chrome.storage.sync.get(function(database) {
-    var noNoteCount = 0;
-    database.allDestinations.forEach(function(country){
-      if(country.note != "") {
-        $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
-      } else {
-        noNoteCount = noNoteCount + 1;
-      };
-      if(noNoteCount == database.allDestinations.length){
-        // $('#no-message').remove();
-        $('#notes').append('<p id="no-message">You have no new notes yet.</p>');
-      };
-    });
   });
 };
 
