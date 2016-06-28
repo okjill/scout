@@ -254,7 +254,7 @@ function showDestinationNote(place) {
     database.allDestinations.forEach(function(country){
       if(country.name == place) {
         $(".jqte_editor").html(country.note);
-        $("#note-description").text(country.note); 
+        $("#note-description").html(country.note);
       };
     });
   });
