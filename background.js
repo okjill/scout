@@ -2,24 +2,24 @@ window.onload = function() {
 
 getCurrentLocation();
 // getLocation()
-  var allDestinations = 
-     [{"name":"Paris", "note":""}, 
-      {"name":"San Francisco", "note":""}, 
+  var allDestinations =
+     [{"name":"Paris", "note":""},
+      {"name":"San Francisco", "note":""},
       {"name":"Chicago", "note":""},
-      {"name":"London", "note":""}, 
-      {"name":"Tokyo", "note":""}, 
+      {"name":"London", "note":""},
+      {"name":"Tokyo", "note":""},
       {"name":"Barcelona", "note":""},
-      {"name":"Seattle", "note":""}, 
-      {"name":"Sydney", "note":""}, 
+      {"name":"Seattle", "note":""},
+      {"name":"Sydney", "note":""},
       {"name":"Costa Rica", "note":""},
-      {"name":"Machu Picchu", "note":""}, 
-      {"name":"Marrakesh", "note":""}, 
+      {"name":"Machu Picchu", "note":""},
+      {"name":"Marrakesh", "note":""},
       {"name":"Berlin", "note":""},
-      {"name":"Bangkok", "note":""}, 
-      {"name":"Bora Bora", "note":""}, 
+      {"name":"Bangkok", "note":""},
+      {"name":"Bora Bora", "note":""},
       {"name":"Cape Town", "note":""}
      ];
-  
+
   chrome.storage.sync.set({"allDestinationsLocal": allDestinations});
   myDestinations = [{"name":"Bora Bora", "note":""}];
   chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
@@ -60,7 +60,7 @@ getCurrentLocation();
         result = destinationObject;
       }
     });
-    return result; 
+    return result;
   }
 
   function saveDestination(destination) {
@@ -147,7 +147,7 @@ function handleWeather(where, city) {
 
   weatherResponse.done(function(weather){
     console.log("weather!", weather.main.temp)
-    var temp = weather.main.temp
+    var temp = Math.round(weather.main.temp)
     if (where === "current") {
       appendCurrent(city, temp);
     } else {
