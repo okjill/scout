@@ -105,8 +105,8 @@ function grabPhotoTag() {
   chrome.storage.sync.get("myDestinationsLocal", function(object){
     var allDestinations = object["myDestinationsLocal"];
     var numberOfDestinations = allDestinations.length;
-    var destinationTag = allDestinations[Math.floor((Math.random() * numberOfDestinations))].name.toLowerCase();
-    getAndApplyPhoto(destinationTag);
+    var destinationTag = allDestinations[Math.floor((Math.random() * numberOfDestinations))].name;
+    getAndApplyPhoto(destinationTag.toLowerCase());
     handleWeather("destin", destinationTag);
   });
 };
