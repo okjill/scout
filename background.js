@@ -102,8 +102,8 @@ $(document).ready(function(){
   // populate notes from menu with places that have notes
   $("#note-menu").click(function() {
     $(".destination-name").remove();
+    $('#no-message').remove();
     showAllNotes();
-    noNotesMessage();
   });
 
   // fill note info with place title, note, and edit button with place name
@@ -275,32 +275,22 @@ function deleteDestinationNote(place) {
   });
 };
 
-// show all destinations that have notes
+// show all destinations that have notes or display message if there are no places with notes
 function showAllNotes() {
   chrome.storage.sync.get(function(database) {
+    var noNoteCount = 0;
     database.allDestinations.forEach(function(country){
       if(country.note != "") {
         $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
-      };
-    });
-  });
-};
-
-// show message for destinations that have no notes && display message if there are not places with notes
-function noNotesMessage() {
-  chrome.storage.sync.get(function(database) {
-    var noNoteCount = 0;
-    var loopCount = 0;
-    database.allDestinations.forEach(function(country){
-      if(country.note == "") {
+      } else {
         noNoteCount = noNoteCount + 1;
       };
-      loopCount = loopCount + 1;
       if(noNoteCount == database.allDestinations.length){
-        $('#no-message').remove();
+        // $('#no-message').remove();
         $('#notes').append('<p id="no-message">You have no new notes yet.</p>');
       };
     });
   });
 };
+
 // END NOTES /\
