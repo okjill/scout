@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="icon-sm.png">
+  <link rel="icon" type="image/png" href="images/icon-sm.png">
 
   <!-- Script-O-Rama -->
   <script type="text/javascript" src="third-party-files/jquery-3.0.0.min.js"></script>
@@ -22,12 +22,12 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
 
 
-  <link rel="stylesheet" type="text/css" href="application.css">
+
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="jquery-te-1.4.0.css" type="text/css" />
-
+  <link rel="stylesheet" type="text/css" href="application.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
   <div class="plane-container">
@@ -48,7 +48,6 @@
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
         <li><a href="#about" rel="modal:open" class="">About</a></li>
-        <li><a href="#quote" rel="modal:open" class="">Quotes</a></li>
         <li><a id="note-menu" href="#notes" rel="modal:open" class="">Notes</a></li>
         <li><a href="#destinations" rel="modal:open" class="">Destinations</a></li>
       </ul>
@@ -57,12 +56,6 @@
     <div id="about" style="display:none;">
       <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>About:</h2>
       <hr>
-    </div>
-    <!-- Quotes Modal -->
-    <div id="quote" style="display:none;">
-      <h2><i class="fa fa-quote-left fa-2x fa-pull-left" aria-hidden="true"></i>Travel Quote of the Day:</h2>
-      <hr>
-      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=E6E6E6&color=333333&font=tahoma&size=20" width="330" height="200" frameborder="0"></iframe>
     </div>
     <!-- Notes Modals -->
     <div id="notes" style="display:none;">
