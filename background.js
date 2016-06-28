@@ -152,7 +152,7 @@ function textShowDestinationNote(place) {
 // edit a particular destination's notes
 function editDestinationNote(place, note) {
   chrome.storage.sync.get(function(database) {
-    database.myDestinations.forEach(function(country){
+    database.myDestinationsLocal.forEach(function(country){
       if(country.name == place) {
         country.note = note;
       };
@@ -164,7 +164,7 @@ function editDestinationNote(place, note) {
 // show note for particular destination & populate textbox with note
 function showDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
-    database.myDestinations.forEach(function(country){
+    database.myDestinationsLocal.forEach(function(country){
       if(country.name == place) {
         $(".jqte_editor").html(country.note);
         $("#note-description").html(country.note);
@@ -177,11 +177,13 @@ function showDestinationNote(place) {
 function showAllNotes() {
   console.log("hello!");
   chrome.storage.sync.get(function(database) {
-    if(database.myDestinations.length == 0) {
+    if(database.myDestinationsLocal.length == 0) {
       $('#notes').append('<p id="no-message">You have no destinations saved yet.</p>');
     };
-    database.myDestinations.forEach(function(country){
-      $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
+    database.myDestinationsLocal.forEach(function(country){
+      if (country.name != "") {
+        $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
+      }
     });
   });
 };
@@ -190,7 +192,7 @@ function showAllNotes() {
 // NOT NEEDED FOR NOW
 function deleteDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
-    database.myDestinations.forEach(function(country){
+    database.myDestinationsLocal.forEach(function(country){
       if(country.name == place) {
         country.note = "";
       };
