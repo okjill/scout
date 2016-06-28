@@ -1,89 +1,7 @@
 window.onload = function() {
 
-getCurrentLocation();
-// getLocation()
-  var allDestinations =
-     [{"name":"Paris", "note":""},
-      {"name":"San Francisco", "note":""},
-      {"name":"Chicago", "note":""},
-      {"name":"London", "note":""},
-      {"name":"Tokyo", "note":""},
-      {"name":"Barcelona", "note":""},
-      {"name":"Seattle", "note":""},
-      {"name":"Sydney", "note":""},
-      {"name":"Costa Rica", "note":""},
-      {"name":"Machu Picchu", "note":""},
-      {"name":"Marrakesh", "note":""},
-      {"name":"Berlin", "note":""},
-      {"name":"Bangkok", "note":""},
-      {"name":"Bora Bora", "note":""},
-      {"name":"Cape Town", "note":""}
-     ];
+  getCurrentLocation();
 
-
-  chrome.storage.sync.set({"allDestinationsLocal": allDestinations});
-
-  myDestinations = [{"name":"Bora Bora", "note":""}];
-  chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
-
-  function showAvailableDestinations() {
-    allDestinations.forEach(function(destination) {
-      for (var i = 0; i < myDestinations.length; i++) {
-        if (myDestinations[i].name != destination.name) {
-          var html = "<div class='destination save'><a href='#'>" + destination.name + "</a></div>";
-          $("#available-destinations").append(html);
-        }
-      }
-    });
-  }
-
-  function showMyDestinations() {
-    chrome.storage.sync.get("myDestinationsLocal", function(object) {
-      object.myDestinationsLocal.forEach(function(destination) {
-        var html = "<div class='destination'><a href='#'>" + destination.name + "</a><i class='fa fa-trash-o fa-1 trash' aria-hidden='true'></i></div>";
-        $("#my-destinations").append(html);
-      });
-    });
-  }
-
-  function updateDestinationsView() {
-    chrome.storage.sync.get("myDestinationsLocal", function(object) {
-      var array = object.myDestinationsLocal;
-      var lastDestination = array[array.length - 1];
-      var html = "<div class='destination'><a href='#'>" + lastDestination.name + "</a><i class='fa fa-trash-o fa-1 trash' aria-hidden='true'></i></div>";
-      $("#my-destinations").append(html);
-    });
-  }
-
-  function findDestinationMatch(newDestinationName) {
-    var result = {};
-    allDestinations.forEach(function(destinationObject) {
-      if (destinationObject.name === newDestinationName) {
-        result = destinationObject;
-      }
-    });
-    return result;
-  }
-
-  function saveDestination(destination) {
-    myDestinations.push(destination);
-    chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
-  }
-
-  function listenForClick() {
-    $(document).on("click", ".save", function() {
-      var $this = $(this);
-      var destinationName = $this[0].innerText;
-      var destinationObject = findDestinationMatch(destinationName);
-      saveDestination(destinationObject);
-      updateDestinationsView();
-      $this.remove();
-    });
-  }
-
-  showAvailableDestinations();
-  showMyDestinations();
-  listenForClick();
   grabPhotoTag();
 };
 
@@ -125,6 +43,10 @@ $(document).ready(function(){
     showDestinationNote(place);
     saveNote(place);
   });
+
+  listenForClick();
+  findAvailableDestinations();
+  showMyDestinations();
 });
 
 
@@ -283,3 +205,115 @@ function deleteDestinationNote(place) {
 };
 
 // END NOTES /\
+
+// BEGIN DESTINATIONS \/
+
+  // initialize data
+  var allDestinations;
+  chrome.storage.sync.get({"allDestinationsLocal":  
+   [{"name":"Barcelona", "note":""},
+    {"name":"Bangkok", "note":""}, 
+    {"name":"Berlin", "note":""},
+    {"name":"Bora Bora", "note":""}, 
+    {"name":"Cape Town", "note":""},
+    {"name":"Chicago", "note":""},
+    {"name":"Costa Rica", "note":""},
+    {"name":"London", "note":""}, 
+    {"name":"Machu Picchu", "note":""}, 
+    {"name":"Marrakesh", "note":""}, 
+    {"name":"Paris", "note":""}, 
+    {"name":"San Francisco", "note":""}, 
+    {"name":"Seattle", "note":""}, 
+    {"name":"Sydney", "note":""}, 
+    {"name":"Tokyo", "note":""}
+   ]}, function(data) {
+    allDestinations = data.allDestinationsLocal;
+    chrome.storage.sync.set({"allDestinationsLocal": allDestinations});
+  });
+
+  var myDestinations;
+  chrome.storage.sync.get({"myDestinationsLocal": [{"name":"", "note":""}]}, function(data) {
+    myDestinations = data.myDestinationsLocal;
+    chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
+  });
+
+  var availableDestinations = [];
+
+  // functions
+  function findAvailableDestinations() {
+    var myNames = [];
+    myDestinations.forEach(function(dest) {
+      myNames.push(dest.name);
+    });
+
+    allDestinations.forEach(function(destination) {
+      if (!myNames.includes(destination.name)) {
+        availableDestinations.push(destination);
+      }
+    });
+    showAvailableDestinations(availableDestinations);
+  }
+
+  function showAvailableDestinations(available) {
+    available.forEach(function(destination) {
+      var html = "<div class='destination save'><a href='#'>" + destination.name + "</a></div>";
+      $("#available-destinations").append(html);
+    }) 
+  }
+
+  function showMyDestinations() {
+    myDestinations.forEach(function(destination) {
+      if (destination.name != "") {
+        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a></div>";
+        $("#my-destinations").append(html);
+      }
+    });
+  }
+
+  function updateDestinationsView() {
+    var lastDestination = myDestinations[myDestinations.length - 1];
+    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a></div>";
+    $("#my-destinations").append(html);
+  }
+
+  function findDestinationMatch(newDestinationName) {
+    var result = {};
+    allDestinations.forEach(function(destinationObject) {
+      if (destinationObject.name === newDestinationName) {
+        result = destinationObject;
+      }
+    });
+    return result; 
+  }
+
+  function saveDestination(destination) {
+    myDestinations.push(destination);
+    chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
+    updateDestinationsView();
+  }
+
+  // function deleteDestination(destination) {
+  //   myDestinations.splice(destination);
+  //   chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
+  // }
+
+  function listenForClick() {
+
+    $(document).on("click", ".save", function() {
+      var $this = $(this);
+      var destinationName = $this[0].innerText;
+      var destinationObject = findDestinationMatch(destinationName);
+      saveDestination(destinationObject);
+      $this.remove();
+    });
+
+    // $(document).on("click", ".remove", function() {
+    //   confirm("Are you sure you want to remove this destination?");
+    //   var $this = $(this);
+    //   var destinationName = $this[0].innerText;
+    //   var destinationObject = findDestinationMatch(destinationName);
+    //   deleteDestination(destinationObject);
+    //   $this.remove();
+    // });
+  }
+// END DESTINATIONS /\
