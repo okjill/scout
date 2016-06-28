@@ -10,18 +10,18 @@ img {
 .weather-container-1 {
 	width: 100px;
   position: absolute;
-  top: 30px;
-  right: 30px;
-  color: #fff;
+  top: 20px;
+  right: 20px;
+  color: #E6E6E6;
   text-align: center;
 }
 
 .weather-container-2 {
   width: 100px;
   position: absolute;
-  top: 30px;
-  right: 150px;
-  color: #fff;
+  top: 20px;
+  right: 110px;
+  color: #E6E6E6;
   text-align: center;
 }
 
@@ -32,7 +32,7 @@ img {
 }
 
 #current-city, #destination-city {
-  font-size: medium;
+  font-size: small;
   margin: 0;
 }
 

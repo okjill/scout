@@ -277,8 +277,8 @@ h1, h2, h3, h4 {
 }
 .plane-container {
 	position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 20px;
+  left: 20px;
 }
 
 .white-icon:hover {
@@ -286,13 +286,59 @@ h1, h2, h3, h4 {
 }
 
 .white-icon {
-	color: #fff;
+	color: #E6E6E6;
 }
 
 .trash {
-	color: #fff;
+	color: #E6E6E6;
 	vertical-align: text-top;
 }
+
+/*Tooltip Styling*/
+  .ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+  }
+  .ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font: bold 14px "Helvetica Neue", Sans-Serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 7px black;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }
 
 @media screen and (max-width: 65.1em) {
 	.bt-menu ul li a {

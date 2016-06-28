@@ -5,7 +5,7 @@
   <title>Scout</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="icon-sm.png">
 
   <!-- Script-O-Rama -->
@@ -30,9 +30,8 @@
 
 </head>
 <body>
-
   <div class="plane-container">
-    <i class="fa fa-plane fa-3x white-icon" aria-hidden="true"></i>
+    <i class="fa fa-plane fa-3x white-icon" aria-hidden="true" title="Click the plane to see current flight information!"></i>
   </div>
 
   <div class="weather-container-1">
@@ -48,15 +47,15 @@
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
-        <li><a href="#settings" rel="modal:open" class="">Settings</a></li>
+        <li><a href="#about" rel="modal:open" class="">About</a></li>
         <li><a href="#quote" rel="modal:open" class="">Quotes</a></li>
         <li><a id="note-menu" href="#notes" rel="modal:open" class="">Notes</a></li>
         <li><a href="#destinations" rel="modal:open" class="">Destinations</a></li>
       </ul>
     </nav>
-    <!-- Settings Modal -->
-    <div id="settings" style="display:none;">
-      <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>Settings:</h2>
+    <!-- About Modal -->
+    <div id="about" style="display:none;">
+      <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>About:</h2>
       <hr>
     </div>
     <!-- Quotes Modal -->

@@ -92,6 +92,12 @@ $(document).ready(function(){
   $("body").css("background", "darkgray");
   $("#note-editor").jqte();
   $("head").append("<script src='https://use.fontawesome.com/8e7d53f080.js'></script>");
+
+  // Adding tooltips to help user navigate
+  $(function() {
+    $( document ).tooltip();
+  });
+
   $("#fakeLoader").fakeLoader({
             timeToHide:10, //Time in milliseconds for fakeLoader disappear
             zIndex:999, // Default zIndex
