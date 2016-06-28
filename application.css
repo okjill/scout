@@ -6,3 +6,8 @@ body {
 img {
 	height: 700px;
 }
+
+#weather {
+	background: #f19c7a;
+	width: 200px;
+}
