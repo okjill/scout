@@ -7,9 +7,33 @@ img {
 	height: 700px;
 }
 
-.weather-container  {
-	background: #f19c7a;
-	width: 200px;
+.weather-container-1 {
+	width: 100px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+.weather-container-2 {
+  width: 100px;
+  position: absolute;
+  top: 30px;
+  right: 150px;
+  color: #fff;
+  text-align: center;
+}
+
+#current-temp, #destination-temp {
+  font-size: large;
+  font-weight: 700;
+  margin: 0;
+}
+
+#current-city, #destination-city {
+  font-size: medium;
+  margin: 0;
 }
 
 #weather-input-button {
