@@ -33,11 +33,25 @@
 </head>
 <body>
 
-<div id="weather">
-  You're looking at <span id="weather-city"></span>!
+<div class="weather-container">
+  You are looking at <span id="destination-city"></span>!
   Where it is: 
-  <span id="weather-temp"></span>
+  <span id="destination-temp"></span>
+</div>
 
+<div class="weather-container">
+  You are in <span class="current-city"></span>!
+  Where it is: 
+  <span class="current-temp"></span>
+</div>
+
+
+<div class="currentlocation">
+  <form>
+    <input type="text" name="city" placeholder="current city..">
+    <input type="submit" value="Get Weather" id="weather-input-button">
+    <br>
+  </form>
 </div>
 
   <div class="container">
