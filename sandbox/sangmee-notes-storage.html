@@ -8,11 +8,11 @@
   <title>Scout</title>
   <!-- <link rel="icon" type="image/png" href="icon-sm.png"> -->
   <!-- FontAwesome-->
-
   <script src="third-party-files/07aaf385cb.js"></script>
+
+
   <script src="ckeditor/ckeditor.js"></script>
   <script type="text/javascript" src="background.js"></script>
-
   <link rel="stylesheet" type="text/css" href="application.css">
   <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
   <script type="text/javascript" src="third-party-files/fakeLoader.min.js"></script>
@@ -32,30 +32,6 @@
 
 </head>
 <body>
-
-<div class="weather-container">
-  <span id="destination-city"></span>
-  <span id="destination-temp"></span>
-</div>
-
-<div class="weather-container">
-  <span id="current-city"></span>
-  <span id="current-temp"></span>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="container">
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
@@ -99,23 +75,29 @@
       <button id="save-button">Save</button>
     </div>
     <!-- Destinations Modal -->
-        <div id="destinations" style="display:none;">
-          <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
-          <hr>
-          <div id="my-destinations"></div>
-
-          <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
-          <hr>
-          <div id="available-destinations"></div>
-       </div>
+    <div id="destinations" style="display:none;">
+      <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
+      <hr>
+      <div class="destination">
+        <a href="#">Antidisestablishmentarianism</a>
+      </div>
+      <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
+      <hr>
+      <div class="destination">
+        <a href="#">Italy</a>
+      </div>
+      <div class="destination">
+        <a href="#">France</a>
+      </div>
+      <div class="destination">
+        <a href="#">Netherland Antilles</a>
+      </div>
+      <div class="destination">
+        <a href="#">Caracas</a>
+      </div>
+   </div>
   <div id="fakeLoader"></div>
 </body>
   <script src="js/classie.js"></script>
   <script src="js/borderMenu.js"></script>
 </html>
-
-
-
-
-
-

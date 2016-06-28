@@ -6,3 +6,12 @@ body {
 img {
 	height: 700px;
 }
+
+.weather-container  {
+	background: #f19c7a;
+	width: 200px;
+}
+
+#weather-input-button {
+	border: none;
+}
