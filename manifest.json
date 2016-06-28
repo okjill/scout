@@ -21,6 +21,7 @@
     "permissions": [
       "activeTab", 
       "storage",
-      "https://api.flickr.com/"
+      "https://api.flickr.com/",
+      "geolocation"
     ]
   }

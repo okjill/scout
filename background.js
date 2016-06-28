@@ -1,5 +1,6 @@
 window.onload = function() {
 
+getCurrentLocation();
 // getLocation()
   var allDestinations = 
      [{"name":"Paris", "note":""}, 
@@ -164,4 +165,23 @@ function appendDestination(city, temp) {
   $("#destination-temp").text(temp+"°")
 };
 // WEATHER API ^^
+
+function getCurrentLocation(){
+  // var options = {maximumAge: 3600000}
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position){
+      var lat = position.coords.latitude;
+      var long = position.coords.longitude;
+      var latlong = [lat,long];
+      getCurrentCityName(lat, long);
+    });
+  };
+};
+
+function getCurrentCityName(lat, long){
+  $.ajax({ url:"http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true", method: "get"}).done(function (city){
+    var cityName = city.results[0].address_components[3].long_name
+    handleWeather("current", cityName);
+  });
+};
 
