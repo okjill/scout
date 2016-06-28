@@ -294,8 +294,9 @@ function noNotesMessage() {
         noNoteCount = noNoteCount + 1;
       };
       loopCount = loopCount + 1;
-      if(database.allDestinations.length == loopCount && noNoteCount > 0){
-        $('#notes').append('<p>You have no new notes yet.</p>');
+      if(noNoteCount == database.allDestinations.length){
+        $('#no-message').remove();
+        $('#notes').append('<p id="no-message">You have no new notes yet.</p>');
       };
     });
   });
