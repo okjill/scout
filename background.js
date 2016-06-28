@@ -86,6 +86,7 @@ getCurrentLocation();
 };
 
 $(document).ready(function(){
+
   $("body").css("background", "darkgray");
   $("#note-editor").jqte();
   $("#fakeLoader").fakeLoader({
