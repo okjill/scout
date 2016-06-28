@@ -1,4 +1,102 @@
 $(document).ready(function(){
+  $("#notes").click(".destination-name", function(event){
+    var placeName = $(event.target).text();
+    textShowDestinationNote(placeName);
+  });
+
+  $("#save-button").click(function(){
+    newNote = $(".jqte_editor").html();
+    editDestinationNote("Paris", newNote);
+    $.modal.close();
+  });
+
+  // SANGMEE - NOTE SHOW/ADD/EDIT/DELETE
+  document.body.onload = function() {
+  // var allDestinations = [
+  //   {"name":"Paris", "note":""}, 
+  //   {"name":"San Francisco", "note":""}, 
+  //   {"name":"Chicago", "note":""}
+  // ];
+    // showDestinationNote("Paris");
+    // addDestinationNote("Paris", "Paris notes");
+    // deleteDestinationNote("San Francisco");
+    showAllNotes();
+    // appendDestinationNote();
+    // textShowDestinationNote("Paris");
+
+  };
+
+// replace note text with particular country text
+  function textShowDestinationNote(place) {
+    $("#note-place-title").text(place);
+    showDestinationNote(place);
+    $("#edit-note-button").text("Edit the " +place+ " Note");
+  };
+
+  // add a new note for a particular destination
+  // WILL AUTOMATICALLY OVERWRITE ANY NOTES THAT ARE THERE ALREADY
+  function addDestinationNote(place, note) {
+    chrome.storage.sync.get(function(database) {
+      database.allDestinations.forEach(function(country){
+        if(country.name == place) {
+          country.note = note;
+        };
+      });
+      chrome.storage.sync.set(database);
+    });
+  };
+
+  // edit a particular destination's notes
+  // SAME AS ADD FUNCTION
+  function editDestinationNote(place, note) {
+    chrome.storage.sync.get(function(database) {
+      database.allDestinations.forEach(function(country){
+        if(country.name == place) {
+          country.note = note;
+        };
+      });
+      chrome.storage.sync.set(database);
+    });
+  };
+
+  function showDestinationNote(place) {
+    chrome.storage.sync.get(function(database) {
+      database.allDestinations.forEach(function(country){
+        if(country.name == place) {
+         $("#note-description").text(country.note); 
+        };
+      });
+    });
+  };
+
+  // delete a particular destination's notes (replace destination notes with a blank string)
+  function deleteDestinationNote(place) {
+    chrome.storage.sync.get(function(database) {
+      database.allDestinations.forEach(function(country){
+        if(country.name == place) {
+          country.note = "";
+        };
+      });
+      chrome.storage.sync.set(database);
+    });
+  };
+
+// show all destinations that have notes
+  function showAllNotes() {
+    chrome.storage.sync.get(function(database) {
+      database.allDestinations.forEach(function(country){
+        if(country.note != "") {
+          $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
+        };
+      });
+    });
+  };
+
+
+  // ===============
+
+
+
   $("body").css("background", "darkgray");
 
   $("#note-editor").jqte();
