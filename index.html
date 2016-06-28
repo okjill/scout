@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-  <script type="text/javascript" src="third-party-files/jquery-3.0.0.min.js"></script>
+
   <title>Scout</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scout</title>
-  <!-- <link rel="icon" type="image/png" href="icon-sm.png"> -->
-  <!-- FontAwesome-->
 
-  <script src="third-party-files/07aaf385cb.js"></script>
-  <script src="ckeditor/ckeditor.js"></script>
+  <link rel="icon" type="image/png" href="icon-sm.png">
+
+  <!-- Script-O-Rama -->
+  <script type="text/javascript" src="third-party-files/jquery-3.0.0.min.js"></script>
   <script type="text/javascript" src="background.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="application.css">
   <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
+  <script src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" src="third-party-files/fakeLoader.min.js"></script>
   <script type="text/javascript" src="jquery-te-1.4.0.min.js"></script>
   <link rel="stylesheet" href="third-party-files/fakeLoader.css">
@@ -23,39 +21,29 @@
   <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
 
+
+  <link rel="stylesheet" type="text/css" href="application.css">
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <script src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="jquery-te-1.4.0.css" type="text/css" />
-
 
 </head>
 <body>
 
-<div class="weather-container-1">
-  <p id="destination-temp"></p>
-  <p id="destination-city"></p>
-</div>
+  <div class="plane-container">
+    <i class="fa fa-plane fa-3x white-icon" aria-hidden="true"></i>
+  </div>
 
-<div class="weather-container-2">
-  <p id="current-temp"></p>
-  <p id="current-city"></p>
-</div>
+  <div class="weather-container-1">
+    <p id="destination-temp"></p>
+    <p id="destination-city"></p>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="weather-container-2">
+    <p id="current-temp"></p>
+    <p id="current-city"></p>
+  </div>
   <div class="container">
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
@@ -99,15 +87,14 @@
       <button id="save-button">Save</button>
     </div>
     <!-- Destinations Modal -->
-        <div id="destinations" style="display:none;">
-          <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
-          <hr>
-          <div id="my-destinations"></div>
-
-          <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
-          <hr>
-          <div id="available-destinations"></div>
-       </div>
+    <div id="destinations" style="display:none;">
+      <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
+      <hr>
+      <div id="my-destinations"></div>
+      <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
+      <hr>
+      <div id="available-destinations"></div>
+   </div>
   <div id="fakeLoader"></div>
 </body>
   <script src="js/classie.js"></script>

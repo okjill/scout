@@ -237,7 +237,7 @@ h1, h2, h3, h4 {
 	background-color: #6E6464;
 	text-align: center;
 	display: inline-block;
-	padding: 10px;
+	padding: 5px 15px;
 }
 
 .destination a {
@@ -274,6 +274,24 @@ h1, h2, h3, h4 {
 #note-editor {
 	min-width: 485px;
 	min-height: 375px;
+}
+.plane-container {
+	position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.white-icon:hover {
+	color: #E24207;
+}
+
+.white-icon {
+	color: #fff;
+}
+
+.trash {
+	color: #fff;
+	vertical-align: text-top;
 }
 
 @media screen and (max-width: 65.1em) {
