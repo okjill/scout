@@ -40,7 +40,7 @@ getCurrentLocation();
   function showMyDestinations() {
     chrome.storage.sync.get("myDestinationsLocal", function(object) {
       object.myDestinationsLocal.forEach(function(destination) {
-        var html = "<div class='destination'><a href='#'>" + destination.name + "</a></div>";
+        var html = "<div class='destination'><a href='#'>" + destination.name + "</a><i class='fa fa-trash-o fa-1 trash' aria-hidden='true'></i></div>";
         $("#my-destinations").append(html);
       });
     });
@@ -50,7 +50,7 @@ getCurrentLocation();
     chrome.storage.sync.get("myDestinationsLocal", function(object) {
       var array = object.myDestinationsLocal;
       var lastDestination = array[array.length - 1];
-      var html = "<div class='destination'><a href='#'>" + lastDestination.name + "</a></div>";
+      var html = "<div class='destination'><a href='#'>" + lastDestination.name + "</a><i class='fa fa-trash-o fa-1 trash' aria-hidden='true'></i></div>";
       $("#my-destinations").append(html);
     });
   }
@@ -91,6 +91,13 @@ $(document).ready(function(){
 
   $("body").css("background", "darkgray");
   $("#note-editor").jqte();
+  $("head").append("<script src='https://use.fontawesome.com/8e7d53f080.js'></script>");
+
+  // Adding tooltips to help user navigate
+  $(function() {
+    $( document ).tooltip();
+  });
+
   $("#fakeLoader").fakeLoader({
             timeToHide:10, //Time in milliseconds for fakeLoader disappear
             zIndex:999, // Default zIndex
