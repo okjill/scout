@@ -20,7 +20,7 @@ getCurrentLocation();
       {"name":"Cape Town", "note":""}
      ];
   
-  chrome.storage.sync.set({"allDestinationsLocal": allDestinations});
+  chrome.storage.sync.set({"allDestinations": allDestinations});
   myDestinations = [{"name":"Bora Bora", "note":""}];
   chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
 
