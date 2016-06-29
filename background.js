@@ -61,7 +61,6 @@ function grabPhotoTag() {
 };
 
 function getAndApplyPhoto(tag) {
-  console.log(tag)
   var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getList&api_key=15814abffa9beab837cad31506bd4eca&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1", method: "get"});
   response.done(function(photos) {
     var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), tag));
@@ -95,7 +94,6 @@ function handleWeather(where, city) {
    var weatherResponse = $.get({url:"http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&appid=76b001f2621941cd5d249226db15ed15", method: "get"});
 
   weatherResponse.done(function(weather){
-    console.log("weather!", weather.main.temp)
     var temp = Math.round(weather.main.temp)
     if (where === "current") {
       appendCurrent(city, temp);
@@ -178,10 +176,9 @@ function showDestinationNote(place) {
 
 // show all destinations that have notes or display message if there are no destinations
 function showAllNotes() {
-  console.log("hello!");
   chrome.storage.sync.get(function(database) {
     if(database.myDestinationsLocal.length === 1 && database.myDestinationsLocal[0].name === "") {
-      $('#notes').append('<p id="no-message">You have no destinations saved yet.</p>');
+      $('#notes').append('<p id="no-message">You haven\'t saved any destinations yet. <a href="#destinations" rel="modal:open">Start adding now!</a></p>');
     };
     database.myDestinationsLocal.forEach(function(country){
       if (country.name != "") {
@@ -263,7 +260,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination mine' id='" + destination.name + "'><a href='#view-note' rel='modal:open'>" + destination.name + "</a><a href='#view-note' rel='modal:open' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
+        var html = "<div class='destination mine' id='" + destination.name + "'><a href='#view-note' rel='modal:open' title='view destination note'>" + destination.name + "</a><a href='#view-note' rel='modal:open' title='remove from saved destinations' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -271,7 +268,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination mine' id='" + lastDestination.name + "'><a href='#view-note' rel='modal:open'>" + lastDestination.name + "</a><a href='#view-note' rel='modal:open' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
+    var html = "<div class='destination mine' id='" + lastDestination.name + "'><a href='#view-note' rel='modal:open' title='view destination note'>" + lastDestination.name + "</a><a href='#view-note' rel='modal:open' title='remove from saved destinations' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
     $("#my-destinations").append(html);
   }
 
@@ -319,12 +316,7 @@ function deleteDestinationNote(place) {
       }
     });
 
-    $(document).on("click", ".destination.mine", function(event) {
-      var $this = $(this);
-      textShowDestinationNote($this.closest("div").attr("id"));
-    });
-
-    $(document).on("click", "a#note-icon", function() {
+    $(document).on("click", ".destination.mine", function() {
       var $this = $(this);
       textShowDestinationNote($this.closest("div").attr("id"));
     });
