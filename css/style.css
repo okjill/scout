@@ -280,7 +280,7 @@ h1, h2, h3, h4, a {
 }
 
 .sticky, .plus {
-	margin-left: 10px !important;
+	margin-left: 5px !important;
 }
 
 .bt-menu ul li:nth-child(4) {
@@ -292,6 +292,10 @@ h1, h2, h3, h4, a {
 .made-with-love {
   width: 150px;
   height: 25px;
+}
+
+.note p {
+	font-size: medium;
 }
 
 @media screen and (max-width: 65.1em) {
