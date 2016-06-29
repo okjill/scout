@@ -10,8 +10,8 @@ img {
 .weather-container-1 {
 	width: 120px;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 25px;
+  right: 25px;
   color: #FFF;
   text-align: center;
 }
@@ -19,8 +19,8 @@ img {
 .weather-container-2 {
   width: 120px;
   position: absolute;
-  top: 20px;
-  right: 150px;
+  top: 100px;
+  right: 25px;
   color: #FFF;
   text-align: center;
 }
