@@ -307,7 +307,7 @@ function deleteDestinationNote(place) {
       $this.remove();
     });
 
-    $(document).on("click", ".remove", function() {
+    $(document).on("click", ".remove i.fa fa-trash-o trash", function() {
       var $this = $(this);
       var destinationName = $this[0].innerText;
       var deleteCheck = confirm("Are you sure you want to remove " + destinationName + " from your destinations?");
