@@ -44,14 +44,17 @@ $(document).ready(function(){
   showMyDestinations();
 });
 
-
+var destinationTag;
 // BACKGROUND IMAGE \/
-
 function grabPhotoTag() {
   chrome.storage.sync.get("myDestinationsLocal", function(object){
-    var allDestinations = object["myDestinationsLocal"];
-    var numberOfDestinations = allDestinations.length;
-    var destinationTag = allDestinations[Math.floor((Math.random() * numberOfDestinations))].name;
+    var myDestinations = object["myDestinationsLocal"];
+    if (myDestinations.length === 1 && myDestinations[0].name == "") {
+      destinationTag = allDestinations[Math.floor((Math.random() * allDestinations.length))].name;
+    }
+    else {
+      destinationTag = myDestinations[Math.floor((Math.random() * myDestinations.length))].name;
+    }
     getAndApplyPhoto(destinationTag.toLowerCase());
     handleWeather("destin", destinationTag);
   });
@@ -204,8 +207,7 @@ function deleteDestinationNote(place) {
 // END NOTES /\
 
 // BEGIN DESTINATIONS \/
-
-  // initialize data
+// initialize data
   var allDestinations;
   chrome.storage.sync.get({"allDestinationsLocal":
    [{"name":"Barcelona", "note":""},
@@ -261,7 +263,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a><i class='fa fa-trash-o trash' aria-hidden='true'></i></div>";
+        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></i></a></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -269,7 +271,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a><i class='fa fa-trash-o trash' aria-hidden='true'></i></div>";
+    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
     $("#my-destinations").append(html);
   }
 
@@ -289,10 +291,11 @@ function deleteDestinationNote(place) {
     updateDestinationsView();
   }
 
-  // function deleteDestination(destination) {
-  //   myDestinations.splice(destination);
-  //   chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
-  // }
+  function deleteDestination(destination) {
+    var index = myDestinations.indexOf(destination);
+    myDestinations.splice(index, 1);
+    chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
+  }
 
   function listenForClick() {
 
@@ -304,13 +307,15 @@ function deleteDestinationNote(place) {
       $this.remove();
     });
 
-    // $(document).on("click", ".remove", function() {
-    //   confirm("Are you sure you want to remove this destination?");
-    //   var $this = $(this);
-    //   var destinationName = $this[0].innerText;
-    //   var destinationObject = findDestinationMatch(destinationName);
-    //   deleteDestination(destinationObject);
-    //   $this.remove();
-    // });
+    $(document).on("click", "a.trash", function() {
+      var $this = $(this);
+      var destinationName = $this[0].innerText;
+      var deleteCheck = confirm("Are you sure you want to remove " + destinationName + " from your destinations?");
+      if (deleteCheck == true) {
+        var destinationObject = findDestinationMatch(destinationName);
+        deleteDestination(destinationObject);
+        $this.remove();
+      }
+    });
+    // END DESTINATIONS /\
   }
-// END DESTINATIONS /\
