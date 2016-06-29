@@ -260,7 +260,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination mine' id='" + destination.name + "'><a href='#view-note' rel='modal:open' tooltip='view destination note'>" + destination.name + "</a><a href='#view-note' rel='modal:open' tooltip='remove from saved destinations' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
+        var html = "<div class='destination mine' id='" + destination.name + "'><a href='#view-note' rel='modal:open' title='view destination note'>" + destination.name + "</a><a href='#view-note' rel='modal:open' title='remove from saved destinations' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -268,7 +268,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination mine' id='" + lastDestination.name + "'><a href='#view-note' rel='modal:open' tooltip='view destination note'>" + lastDestination.name + "</a><a href='#view-note' rel='modal:open' tooltip='remove from saved destinations' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
+    var html = "<div class='destination mine' id='" + lastDestination.name + "'><a href='#view-note' rel='modal:open' title='view destination note'>" + lastDestination.name + "</a><a href='#view-note' rel='modal:open' title='remove from saved destinations' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
     $("#my-destinations").append(html);
   }
 
