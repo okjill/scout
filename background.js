@@ -263,7 +263,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination remove'><a href='#' id='trash'>" + destination.name + "</a><a href='#' class='fa fa-trash-o trash' aria-hidden='true'></i></a></div>";
+        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></i></a></div>";
         $("#my-destinations").append(html);
       }
     });
