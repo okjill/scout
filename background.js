@@ -149,7 +149,7 @@ function saveNote(place) {
 function textShowDestinationNote(place) {
   $("#note-place-title").text(place);
   showDestinationNote(place);
-  $("#edit-note-button").text("Edit the " +place+ " Note");
+  $("#edit-note-button").text("Edit Note");
 };
 
 // edit a particular destination's notes
@@ -180,7 +180,7 @@ function showDestinationNote(place) {
 function showAllNotes() {
   console.log("hello!");
   chrome.storage.sync.get(function(database) {
-    if(database.myDestinationsLocal.length == 0) {
+    if(database.myDestinationsLocal.length === 1 && database.myDestinationsLocal[0].name === "") {
       $('#notes').append('<p id="no-message">You have no destinations saved yet.</p>');
     };
     database.myDestinationsLocal.forEach(function(country){
