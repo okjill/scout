@@ -149,7 +149,7 @@ function saveNote(place) {
 function textShowDestinationNote(place) {
   $("#note-place-title").text(place);
   showDestinationNote(place);
-  $("#edit-note-button").text("Edit the " +place+ " Note");
+  $("#edit-note-button").text("Edit Note");
 };
 
 // edit a particular destination's notes
@@ -180,7 +180,7 @@ function showDestinationNote(place) {
 function showAllNotes() {
   console.log("hello!");
   chrome.storage.sync.get(function(database) {
-    if(database.myDestinationsLocal.length == 0) {
+    if(database.myDestinationsLocal.length === 1 && database.myDestinationsLocal[0].name === "") {
       $('#notes').append('<p id="no-message">You have no destinations saved yet.</p>');
     };
     database.myDestinationsLocal.forEach(function(country){
@@ -263,7 +263,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination remove id='" + destination.name + "'><a href='#'>" + destination.name + "</a><a href='#' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
+        var html = "<div class='destination mine' id='" + destination.name + "'><a href='#view-note' rel='modal:open'>" + destination.name + "</a><a href='#view-note' rel='modal:open' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -271,7 +271,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination remove' id='" + lastDestination.name + "'><a href='#'>" + lastDestination.name + "</a><a href='#' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
+    var html = "<div class='destination mine' id='" + lastDestination.name + "'><a href='#view-note' rel='modal:open'>" + lastDestination.name + "</a><a href='#view-note' rel='modal:open' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
     $("#my-destinations").append(html);
   }
 
@@ -317,6 +317,16 @@ function deleteDestinationNote(place) {
         $this.closest("div").remove();
         $this.remove();
       }
+    });
+
+    $(document).on("click", ".destination.mine", function(event) {
+      var $this = $(this);
+      textShowDestinationNote($this.closest("div").attr("id"));
+    });
+
+    $(document).on("click", "a#note-icon", function() {
+      var $this = $(this);
+      textShowDestinationNote($this.closest("div").attr("id"));
     });
     // END DESTINATIONS /\
   }
