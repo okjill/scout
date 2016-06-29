@@ -71,7 +71,7 @@ h1, h2, h3, h4 {
 	display: block;
 	width: 100%;
 	height: 8%;
-	background-color: #E6E6E6;
+	background-color: #FFF;
 	font-size: 0px;
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
@@ -93,7 +93,7 @@ h1, h2, h3, h4 {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #E6E6E6;
+	background: #FFF;
 	content: '';
 	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
 	transition: transform 0.3s, background-color 0.3s;
@@ -283,7 +283,7 @@ h1, h2, h3, h4 {
 }
 
 .white-icon {
-	color: #E6E6E6;
+	color: #FFF;
 }
 
 .trash {
