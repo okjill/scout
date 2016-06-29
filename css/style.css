@@ -11,7 +11,7 @@ body  {
 	font-family: 'Lato', sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, a {
 	font-family: 'Quicksand', sans-serif;
 	margin-top: 5px;
 }
@@ -76,11 +76,10 @@ h1, h2, h3, h4 {
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
+/*	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;
+	user-select: none;*/
 }
 
 .bt-menu-open .bt-menu-trigger span {
@@ -162,36 +161,24 @@ h1, h2, h3, h4 {
 	transform: translate3d(0,100%,0);
 }
 
-/*.bt-menu ul li:nth-child(1) {
-	margin-left: 200px;
-}
-
-.bt-menu ul li:nth-child(2) {
-	margin-left: 300px;
-}*/
-
-/*.bt-menu ul li:nth-child(3) {
-	margin-right: 600px;
-}*/
-
 .bt-menu.bt-menu-open ul li {
 	opacity: 1;
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 }
 
-.bt-menu.bt-menu-open ul li:first-child,
-.bt-menu.bt-menu-open ul li:last-child {
+.bt-menu .bt-menu-open ul li:first-child,
+.bt-menu .bt-menu-open ul li:last-child {
 	-webkit-transition-delay: 0.3s;
 	transition-delay: 0.3s;
 }
 
-.bt-menu.bt-menu-open ul li:nth-child(2), {
+.bt-menu .bt-menu-open ul li:nth-child(2) {
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }
 
-.bt-menu.bt-menu-open ul li:nth-child(3), {
+.bt-menu .bt-menu-open ul li:nth-child(3) {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
 }
@@ -305,7 +292,11 @@ h1, h2, h3, h4 {
 .made-with-love {
   width: 150px;
   height: 25px;
-	}
+}
+
+
+.close-modal {
+	display:none !important;
 }
 
 @media screen and (max-width: 65.1em) {
@@ -316,7 +307,7 @@ h1, h2, h3, h4 {
 	}
 
 	.bt-menu ul li a {
-		font-size: 90%;
+		font-size: medium;
 	}
 }
 

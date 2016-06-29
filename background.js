@@ -185,7 +185,7 @@ function showAllNotes() {
     };
     database.myDestinationsLocal.forEach(function(country){
       if (country.name != "") {
-        $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a></div>');
+        $('#notes').append('<div class="destination destination-name"><a href="#view-note" rel="modal:open">'+country.name+'</a><a href="#view-note" rel="modal:open" id="note-icon" class="fa fa-sticky-note-o sticky" aria-hidden="true"></a></div>');
       }
     });
   });
