@@ -127,7 +127,7 @@ h1, h2, h3, h4 {
 .bt-menu ul {
 	position: fixed;
 	bottom: 0px;
-	left: 50px;
+	left: 75px;
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -182,11 +182,16 @@ h1, h2, h3, h4 {
 
 .bt-menu.bt-menu-open ul li:first-child,
 .bt-menu.bt-menu-open ul li:last-child {
-	-webkit-transition-delay: 0.15s;
-	transition-delay: 0.15s;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
 }
 
 .bt-menu.bt-menu-open ul li:nth-child(2), {
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.bt-menu.bt-menu-open ul li:nth-child(3), {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
 }
@@ -198,7 +203,7 @@ h1, h2, h3, h4 {
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-size: 1.15em;
+	font-size: 1.5em;
 	-webkit-transition: color 0.2s;
 	transition: color 0.2s;
 }
@@ -229,7 +234,7 @@ h1, h2, h3, h4 {
 	background-color: #6E6464;
 	text-align: center;
 	display: inline-block;
-	padding: 5px 15px;
+	padding: 10px 20px;
 }
 
 .destination a {
@@ -286,10 +291,23 @@ h1, h2, h3, h4 {
 	vertical-align: text-top;
 }
 
+.bt-menu ul li:nth-child(4) {
+	position: absolute;
+  bottom: -5px;
+  right: 250px;
+}
+
+.made-with-love {
+  width: 150px;
+  height: 25px;
+	}
+}
+
 @media screen and (max-width: 65.1em) {
-/*	.bt-menu ul li:nth-child(2) {
-		margin-left: 200px;
-		margin-right: 20px;
+/*	.bt-menu ul li:nth-child(4) {
+		position: absolute;
+    bottom: -5px;
+    right: 200px;
 	}*/
 
 	.bt-menu ul li:nth-child(3) {
