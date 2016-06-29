@@ -263,7 +263,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a><i class='fa fa-trash-o trash' aria-hidden='true'></i></div>";
+        var html = "<div class='destination remove'><a href='#' id='trash'>" + destination.name + "</a><a href='#' class='fa fa-trash-o trash' aria-hidden='true'></i></a></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -271,7 +271,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a><i class='fa fa-trash-o trash' aria-hidden='true'></i></div>";
+    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
     $("#my-destinations").append(html);
   }
 
@@ -307,7 +307,7 @@ function deleteDestinationNote(place) {
       $this.remove();
     });
 
-    $(document).on("click", ".remove i.fa fa-trash-o trash", function() {
+    $(document).on("click", "a.trash", function() {
       var $this = $(this);
       var destinationName = $this[0].innerText;
       var deleteCheck = confirm("Are you sure you want to remove " + destinationName + " from your destinations?");
