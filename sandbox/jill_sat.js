@@ -5,6 +5,10 @@ var uid = "jill";
 var currentUserNode = usersRef.child(uid + '/destinations');
 var destinationsRef = ref.child('destinations');
 
+
+
+
+
 function showUserDestinations() {
   currentUserNode.orderByKey().on('child_added', function(snapshot) {
     destinationsRef.orderByKey().equalTo(snapshot.key()).on('child_added', function(snapshot) {
