@@ -286,17 +286,12 @@ h1, h2, h3, h4, a {
 .bt-menu ul li:nth-child(4) {
 	position: absolute;
   bottom: -10px;
-  right: 250px;
+  right: 180px;
 }
 
 .made-with-love {
   width: 150px;
   height: 25px;
-}
-
-
-.close-modal {
-	display:none !important;
 }
 
 @media screen and (max-width: 65.1em) {
