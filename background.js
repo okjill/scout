@@ -207,21 +207,21 @@ function deleteDestinationNote(place) {
 
   // initialize data
   var allDestinations;
-  chrome.storage.sync.get({"allDestinationsLocal":  
+  chrome.storage.sync.get({"allDestinationsLocal":
    [{"name":"Barcelona", "note":""},
-    {"name":"Bangkok", "note":""}, 
+    {"name":"Bangkok", "note":""},
     {"name":"Berlin", "note":""},
-    {"name":"Bora Bora", "note":""}, 
+    {"name":"Bora Bora", "note":""},
     {"name":"Cape Town", "note":""},
     {"name":"Chicago", "note":""},
     {"name":"Costa Rica", "note":""},
-    {"name":"London", "note":""}, 
-    {"name":"Machu Picchu", "note":""}, 
-    {"name":"Marrakesh", "note":""}, 
-    {"name":"Paris", "note":""}, 
-    {"name":"San Francisco", "note":""}, 
-    {"name":"Seattle", "note":""}, 
-    {"name":"Sydney", "note":""}, 
+    {"name":"London", "note":""},
+    {"name":"Machu Picchu", "note":""},
+    {"name":"Marrakesh", "note":""},
+    {"name":"Paris", "note":""},
+    {"name":"San Francisco", "note":""},
+    {"name":"Seattle", "note":""},
+    {"name":"Sydney", "note":""},
     {"name":"Tokyo", "note":""}
    ]}, function(data) {
     allDestinations = data.allDestinationsLocal;
@@ -255,13 +255,13 @@ function deleteDestinationNote(place) {
     available.forEach(function(destination) {
       var html = "<div class='destination save'><a href='#'>" + destination.name + "</a></div>";
       $("#available-destinations").append(html);
-    }) 
+    })
   }
 
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a></div>";
+        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a><i class='fa fa-trash-o trash' aria-hidden='true'></i></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -269,7 +269,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a></div>";
+    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a><i class='fa fa-trash-o trash' aria-hidden='true'></i></div>";
     $("#my-destinations").append(html);
   }
 
@@ -280,7 +280,7 @@ function deleteDestinationNote(place) {
         result = destinationObject;
       }
     });
-    return result; 
+    return result;
   }
 
   function saveDestination(destination) {
