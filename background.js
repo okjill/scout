@@ -255,7 +255,7 @@ function deleteDestinationNote(place) {
 
   function showAvailableDestinations(available) {
     available.forEach(function(destination) {
-      var html = "<div class='destination save'><a href='#'>" + destination.name + "</a><br><a href='#' id='plus-icon' class='fa fa-plus-square-o plus' aria-hidden='true'></a></div>";
+      var html = "<div class='destination save'><a href='#'>" + destination.name + "</a><a href='#' id='plus-icon' class='fa fa-plus-square-o plus' aria-hidden='true'></a></div>";
       $("#available-destinations").append(html);
     })
   }
@@ -263,7 +263,7 @@ function deleteDestinationNote(place) {
   function showMyDestinations() {
     myDestinations.forEach(function(destination) {
       if (destination.name != "") {
-        var html = "<div class='destination remove'><a href='#'>" + destination.name + "</a><br><a href='#' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
+        var html = "<div class='destination remove id='" + destination.name + "'><a href='#'>" + destination.name + "</a><a href='#' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>";
         $("#my-destinations").append(html);
       }
     });
@@ -271,7 +271,7 @@ function deleteDestinationNote(place) {
 
   function updateDestinationsView() {
     var lastDestination = myDestinations[myDestinations.length - 1];
-    var html = "<div class='destination remove'><a href='#'>" + lastDestination.name + "</a><br><a href='#' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
+    var html = "<div class='destination remove' id='" + lastDestination.name + "'><a href='#'>" + lastDestination.name + "</a><a href='#' id='note-icon' class='fa fa-sticky-note-o sticky' aria-hidden='true'></a><a href='#' id='trash' class='fa fa-trash-o trash' aria-hidden='true'></a></div>"
     $("#my-destinations").append(html);
   }
 
@@ -309,7 +309,7 @@ function deleteDestinationNote(place) {
 
     $(document).on("click", "a.trash", function() {
       var $this = $(this);
-      var destinationName = $this[0].innerText;
+      var destinationName = $this.closest("div").attr("id");
       var deleteCheck = confirm("Are you sure you want to remove " + destinationName + " from your destinations?");
       if (deleteCheck == true) {
         var destinationObject = findDestinationMatch(destinationName);
