@@ -13,7 +13,7 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["third-party-files/jquery-3.0.0.min.js","third-party-files/jquery.backstretch.min.js", "third-party-files/fakeLoader.min.js", "content.js"]
+      "js": ["third-party-files/jquery-3.0.0.min.js","third-party-files/jquery.backstretch.min.js", "third-party-files/fakeLoader.min.js"]
     }
   ],
   "background": {
