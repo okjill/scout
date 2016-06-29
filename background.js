@@ -314,6 +314,7 @@ function deleteDestinationNote(place) {
       if (deleteCheck == true) {
         var destinationObject = findDestinationMatch(destinationName);
         deleteDestination(destinationObject);
+        $this.closest("div").remove();
         $this.remove();
       }
     });
