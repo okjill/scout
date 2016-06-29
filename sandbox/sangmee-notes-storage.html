@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <script type="text/javascript" src="third-party-files/jquery-3.0.0.min.js"></script>
+  <title>Scout</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scout</title>
+  <!-- <link rel="icon" type="image/png" href="icon-sm.png"> -->
+  <!-- FontAwesome-->
+  <script src="third-party-files/07aaf385cb.js"></script>
+
+
+  <script src="ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="background.js"></script>
+  <link rel="stylesheet" type="text/css" href="application.css">
+  <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
+  <script type="text/javascript" src="third-party-files/fakeLoader.min.js"></script>
+  <script type="text/javascript" src="jquery-te-1.4.0.min.js"></script>
+  <link rel="stylesheet" href="third-party-files/fakeLoader.css">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="jquery-te-1.4.0.css" type="text/css" />
+
+
+</head>
+<body>
+  <div class="container">
+    <nav id="bt-menu" class="bt-menu">
+      <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
+      <ul>
+        <li><a href="#settings" rel="modal:open" class="">Settings</a></li>
+        <li><a href="#quote" rel="modal:open" class="">Quotes</a></li>
+        <li><a id="note-menu" href="#notes" rel="modal:open" class="">Notes</a></li>
+        <li><a href="#destinations" rel="modal:open" class="">Destinations</a></li>
+      </ul>
+    </nav>
+    <!-- Settings Modal -->
+    <div id="settings" style="display:none;">
+      <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>Settings:</h2>
+      <hr>
+    </div>
+    <!-- Quotes Modal -->
+    <div id="quote" style="display:none;">
+      <h2><i class="fa fa-quote-left fa-2x fa-pull-left" aria-hidden="true"></i>Travel Quote of the Day:</h2>
+      <hr>
+      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=E6E6E6&color=333333&font=tahoma&size=20" width="330" height="200" frameborder="0"></iframe>
+    </div>
+    <!-- Notes Modals -->
+    <div id="notes" style="display:none;">
+      <h2><i class="fa fa-sticky-note-o fa-2x fa-pull-left" aria-hidden="true"></i>Your Notes <small>(click to view/edit):</small></h2>
+      <hr>
+    </div>
+    <div id="view-note" style="display:none;">
+      <h2 id="note-place-title">VIEWING NOTE!!!!!</h2>
+      <hr>
+      <div class="note">
+        <p id="note-description"></p>
+        <a id="edit-note-button" href="#edit-note" rel="modal:open"></a>
+      </div>
+    </div>
+    <div id="edit-note" style="display:none;">
+      <h2><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Editing Note:</h2>
+      <hr>
+      <div class="edit-note" id="note-editor">
+
+      </div>
+      <button id="save-button">Save</button>
+    </div>
+    <!-- Destinations Modal -->
+    <div id="destinations" style="display:none;">
+      <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
+      <hr>
+      <div class="destination">
+        <a href="#">Antidisestablishmentarianism</a>
+      </div>
+      <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
+      <hr>
+      <div class="destination">
+        <a href="#">Italy</a>
+      </div>
+      <div class="destination">
+        <a href="#">France</a>
+      </div>
+      <div class="destination">
+        <a href="#">Netherland Antilles</a>
+      </div>
+      <div class="destination">
+        <a href="#">Caracas</a>
+      </div>
+   </div>
+  <div id="fakeLoader"></div>
+</body>
+  <script src="js/classie.js"></script>
+  <script src="js/borderMenu.js"></script>
+</html>
