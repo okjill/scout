@@ -11,7 +11,7 @@ body  {
 	font-family: 'Lato', sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, a {
 	font-family: 'Quicksand', sans-serif;
 	margin-top: 5px;
 }
@@ -76,11 +76,10 @@ h1, h2, h3, h4 {
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
+/*	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;
+	user-select: none;*/
 }
 
 .bt-menu-open .bt-menu-trigger span {
@@ -126,8 +125,8 @@ h1, h2, h3, h4 {
 
 .bt-menu ul {
 	position: fixed;
-	bottom: 0px;
-	left: 75px;
+	bottom: 5px;
+	left: 50px;
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -162,18 +161,6 @@ h1, h2, h3, h4 {
 	transform: translate3d(0,100%,0);
 }
 
-/*.bt-menu ul li:nth-child(1) {
-	margin-left: 200px;
-}
-
-.bt-menu ul li:nth-child(2) {
-	margin-left: 300px;
-}*/
-
-/*.bt-menu ul li:nth-child(3) {
-	margin-right: 600px;
-}*/
-
 .bt-menu.bt-menu-open ul li {
 	opacity: 1;
 	-webkit-transform: translate3d(0,0,0);
@@ -186,12 +173,12 @@ h1, h2, h3, h4 {
 	transition-delay: 0.3s;
 }
 
-.bt-menu.bt-menu-open ul li:nth-child(2), {
+.bt-menu.bt-menu-open ul li:nth-child(2) {
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }
 
-.bt-menu.bt-menu-open ul li:nth-child(3), {
+.bt-menu.bt-menu-open ul li:nth-child(3) {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
 }
@@ -229,7 +216,7 @@ h1, h2, h3, h4 {
 
 .destination {
 	width: auto;
-	height: 75px;
+	height:50px;
 	margin: 5px 5px;
 	background-color: #6E6464;
 	text-align: center;
@@ -289,19 +276,27 @@ h1, h2, h3, h4 {
 .trash, .sticky, .plus {
 	color: #E6E6E6 !important;
 	font-size: medium !important;
-	padding: 0 10px;
+	padding: 0 5px;
+}
+
+.sticky, .plus {
+	margin-left: 10px !important;
 }
 
 .bt-menu ul li:nth-child(4) {
 	position: absolute;
-  bottom: -5px;
+  bottom: -10px;
   right: 250px;
 }
 
 .made-with-love {
   width: 150px;
   height: 25px;
-	}
+}
+
+
+.close-modal {
+	display:none !important;
 }
 
 @media screen and (max-width: 65.1em) {
@@ -312,7 +307,7 @@ h1, h2, h3, h4 {
 	}
 
 	.bt-menu ul li a {
-		font-size: 90%;
+		font-size: medium;
 	}
 }
 
