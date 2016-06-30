@@ -331,7 +331,7 @@ function setupDate(longForm){
 }
 
 function getAirportCode(lat, long){
-  return $.ajax({url:"https://airport.api.aero/airport/nearest/"+lat+"/"+long+"?maxAirports=1&user_key=6af0095cd237e754d20b7a2f4745110b",dataType: "json", method: "GET"});
+  return $.ajax({url:"https://airport.api.aero/airport/nearest/"+lat+"/"+long+"?maxAirports=2&user_key=6af0095cd237e754d20b7a2f4745110b",dataType: "json", method: "GET"});
 };
 
 function hardAirportCode(city, success) {
@@ -339,7 +339,9 @@ function hardAirportCode(city, success) {
   success([city, destinationKey[city]])
 };
 
-function getFlightInfo(currentLocation, destination) {
+function getFlightInfo(currentLocationOne, currentLocationTwo, destination) {
+  console.log(currentLocationOne)
+  console.log(currentLocationTwo)
   var leaveDate = getTravelDates()[0];
   var returnDate = getTravelDates()[1];
 
@@ -351,6 +353,13 @@ function getFlightInfo(currentLocation, destination) {
     var current = flightInfo.Places[1].CityName;
     var link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en_US/"+currentLocation+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db64517035877613"
     var niceDate = getTravelDates()[2]
+    console.log(flightInfo)
+    console.log(price)
+    console.log(destination)
+    console.log(current)
+    console.log(link)
+    console.log(niceDate)
+
 
     $("#flight-price").text("$" + price)
     $("#flight-date").text(niceDate)
@@ -399,7 +408,7 @@ function pageAddOnHandler() {
             handleWeather(place[0]).done(function(weather){
               var temp = Math.round(weather.main.temp);
               appendDestination(place[0], temp);
-            getFlightInfo(response.airports[0].code, place[1]); 
+            getFlightInfo(response.airports[0].code, response.airports[1].code, place[1]); 
             });
           });
         }
