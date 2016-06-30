@@ -29,7 +29,7 @@
       "storage",
       "https://api.flickr.com/",
       "http://https://airport.api.aero/",
-      "http://partners.api.skyscanner.net",
+      "http://partners.api.skyscanner.net/",
       "geolocation",
       "unlimitedStorage"
     ]
