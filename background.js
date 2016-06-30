@@ -55,7 +55,7 @@ function grabPhotoObjects(response) {
 function getMatchingTagArray(allObjects, tag) {
   var countryPics = [];
   allObjects.forEach(function(picture){
-    if(picture.tags.includes(tag)){
+    if(picture.tags.replace(/\s+/, "").includes(tag.replace(/\s+/, ""))){
       countryPics.push(picture);
     };
   });
