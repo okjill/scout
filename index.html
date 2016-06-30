@@ -1,124 +1,106 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-  <script type="text/javascript" src="jquery-3.0.0.min.js"></script>
   <title>Scout</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scout</title>
-  <!-- <link rel="icon" type="image/png" href="icon-sm.png"> -->
-  <!-- FontAwesome-->
-  <script src="https://use.fontawesome.com/07aaf385cb.js"></script>
-  <!-- this is required but causes an error -->
-  <script src="firebase.js"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/icon-16.png">
 
+  <!-- Script-O-Rama -->
+  <script type="text/javascript" src="seeds.js"></script>
+  <script type="text/javascript" src="third-party-files/jquery-3.0.0.min.js"></script>
   <script type="text/javascript" src="background.js"></script>
-  <link rel="stylesheet" type="text/css" href="application.css">
-  <script type="text/javascript" src="jquery.backstretch.min.js"></script>
-  <script type="text/javascript" src="fakeLoader.min.js"></script>
+  <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
+  <script type="text/javascript" src="third-party-files/fakeLoader.min.js"></script>
 
   <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="fakeLoader.css">
+  <!-- Stylesheets - so much style -->
+  <link rel="stylesheet" href="third-party-files/fakeLoader.css">
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" href="third-party-files/jquery.modal.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="third-party-files/jquery-te-1.4.0.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="css/application.css">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <script src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
-
 </head>
-
-
 <body>
-  <div class="container">
-    <!-- Container where we'll display the user details -->
-    <div class="quickstart-user-details-container">
-      Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-      <div>Firebase auth <code>currentUser</code> object value:</div>
-      <pre><code id="quickstart-account-details">null</code></pre>
-      <div>Google OAuth Access Token:</div>
-      <pre><code id="quickstart-oauthtoken">null</code></pre>
-    </div>
+  <div class="plane-container">
+    <i class="fa fa-plane fa-3x white-icon" aria-hidden="true" title="Click to see current flight information!"></i>
+  </div>
+  
+  <div class="price-container"> <a id="flight-link" href="www.google.com">
+    <span id="flight-price">$2000</span>
+    <span id="flight-date">Fri Jul 29</span>
+    <span>
+      <span id="flight-current">Chicago</span> - <span id="flight-destination">Barcelona</span>
+    </span>
+    </a>
   </div>
 
+  <div class="weather-container-1">
+    <p id="destination-temp"></p>
+    <p id="destination-city"></p>
+  </div>
+  <div class="weather-container-2">
+    <p id="current-temp"></p>
+    <p id="current-city"></p>
+  </div>
   <div class="container">
     <nav id="bt-menu" class="bt-menu">
       <a href="#" class="bt-menu-trigger no-focus"><span>Menu</span></a>
       <ul>
-        <li><a href="#settings" rel="modal:open" class="">Settings</a></li>
-        <li><a href="#quote" rel="modal:open" class="">Quotes</a></li>
-        <li><a href="#notes" rel="modal:open" class="">Notes</a></li>
+        <li><a href="#about" rel="modal:open" class="">About</a></li>
+        <li><a id="note-menu" href="#notes" rel="modal:open" class="">Notes</a></li>
         <li><a href="#destinations" rel="modal:open" class="">Destinations</a></li>
+        <li><img class="made-with-love" alt="made with love by Scout" src="images/made-with-love.png"></li>
       </ul>
     </nav>
-    <!-- Settings Modal -->
-    <div id="settings" style="display:none;">
-      <h2 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>Settings:</h2>
+  </div>
+    <!-- About Modal -->
+    <div id="about" style="display:none;">
+      <h1 id='user-loggedin'><img class="about-logo" src="images/icon-48.png">About</h1>
       <hr>
-      <!-- Button that handles sign-in/sign-out -->
-      <button disabled class="login" id="quickstart-sign-in">Sign in with Google</button>
-    </div>
-    <!-- Quotes Modal -->
-    <div id="quote" style="display:none;">
-      <h2><i class="fa fa-quote-left fa-2x fa-pull-left" aria-hidden="true"></i>Travel Quote of the Day:</h2>
-      <hr>
-      <iframe class="travel-quote" src="http://jamocreations.com/widgets/travel-quotes/iframe.php?background=FFFFFF&color=333333&font=tahoma&size=18" width="330" height="200" frameborder="0"></iframe>
     </div>
     <!-- Notes Modals -->
     <div id="notes" style="display:none;">
-      <h2><i class="fa fa-sticky-note-o fa-2x fa-pull-left" aria-hidden="true"></i>Your Notes <small>(click to view/edit):</small></h2>
+      <h1><i class="fa fa-sticky-note-o fa-2x fa-pull-left" aria-hidden="true"></i>Your Notes <small>(click to view/edit)</small></h1>
       <hr>
-      <div class="destination">
-        <a href="#view-note" rel="modal:open">View Antidisestablishmentarianism Note!</a>
-      </div>
     </div>
     <div id="view-note" style="display:none;">
-      <h2>VIEWING NOTE!!!!!</h2>
+      <i class="fa fa-map-marker fa-3x fa-pull-left" aria-hidden="true"></i><h1 id="note-place-title">Your Note</h1>
       <hr>
       <div class="note">
-        <p>This is totally a note with lots of stuff in it about places I want to go.</p>
-        <a href="#edit-note" rel="modal:open">Edit the Antidisestablishmentarianism Note </a>
+        <p id="note-description"></p>
+        <a class="button-link-style" id="edit-note-button" href="#edit-note" rel="modal:open"></a>
+        <a class="button-link-style" id="all-notes-button" href="#notes" rel="modal:open">View All Notes</a>
       </div>
     </div>
     <div id="edit-note" style="display:none;">
-      <h2><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Editing Note:</h2>
+      <h1><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Edit Note</h1>
       <hr>
-      <div class="edit-note">
-        <form>
-          <textarea></textarea>
-          </br>
-          <button>Save</button>
-        </form>
+      <div class="edit-note" id="note-editor">
+
       </div>
+      <a class="button-link-style" id="save-button">Save</a>
     </div>
     <!-- Destinations Modal -->
     <div id="destinations" style="display:none;">
-      <h2><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations:</h2>
+      <h1><i class="fa fa-globe fa-2x fa-pull-left" aria-hidden="true"></i>Your Destinations</h1>
       <hr>
-      <div class="destination">
-        <a href="#">Antidisestablishmentarianism</a>
-      </div>
-      <h2 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add):</small></h2>
+      <div id="my-destinations"></div>
+      <h1 class="available"><i class="fa fa-compass fa-2x fa-pull-left" aria-hidden="true"></i>Available Destinations <small>(click to add)</small></h1>
       <hr>
-      <div class="destination">
-        <a href="#">Italy</a>
-      </div>
-      <div class="destination">
-        <a href="#">France</a>
-      </div>
-      <div class="destination">
-        <a href="#">Netherland Antilles</a>
-      </div>
-      <div class="destination">
-        <a href="#">Caracas</a>
-      </div>
+      <div id="available-destinations"></div>
    </div>
-  </div><!-- /container -->
   <div id="fakeLoader"></div>
+  <script src="third-party-files/classie.js"></script>
+  <script src="third-party-files/borderMenu.js"></script>
+  <script type="text/javascript" src="third-party-files/jquery-te-1.4.0.min.js"></script>
+  <script type="text/javascript" src="third-party-files/jquery.modal.min.js"  charset="utf-8"></script>
 </body>
-  <script src="js/classie.js"></script>
-  <script src="js/borderMenu.js"></script>
 </html>
 
 

@@ -1,0 +1,50 @@
+body {
+	width: 100%;
+	margin: auto;
+}
+
+img {
+	height: 700px;
+}
+
+.weather-container-1 {
+	width: 120px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #FFF;
+  text-align: center;
+}
+
+.weather-container-2 {
+  width: 120px;
+  position: absolute;
+  top: 110px;
+  right: 25px;
+  color: #FFF;
+  text-align: center;
+}
+
+.weather-container-1:hover, .weather-container-2:hover {
+  color: #E24207;
+}
+
+#current-temp, #destination-temp {
+  font-size: x-large;
+  font-weight: 700;
+  margin: 0;
+}
+
+#current-city, #destination-city {
+  font-size: medium;
+  margin: 0;
+}
+
+#weather-input-button {
+	border: none;
+}
+
+/*Price Styling done by Emma*/
+.price-container {
+  display: none;
+}
