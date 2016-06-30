@@ -393,43 +393,42 @@ function grabPhotoTag(success) {
 };
 
 function pageAddOnHandler() {
-
   grabPhotoTag(function(object){
     var myDestinations = object["myDestinationsLocal"];
     var airportCode = getCurrentLocation(function(position){
       getAirportCode(position.coords.latitude, position.coords.longitude).always(function(response) {
-        if (myDestinations.length === 1 && myDestinations[0].name == ""){hardAirportCode(allDestinations[Math.floor(Math.random() * (allDestinations.length-1))].name, function(place) { 
-            
+        if (myDestinations.length === 1 && myDestinations[0].name == ""){
+          hardAirportCode(allDestinations[Math.floor(Math.random() * (allDestinations.length-1))].name, function(place) {
+          getAndApplyPhoto(place[0]).done(function(photos) {
+            var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), place[0].toLowerCase()));
+            var image = "https://farm"+photoInfo.farm+".staticflickr.com/"+photoInfo.server+"/"+photoInfo.id+"_"+photoInfo.secret+"_b.jpg";
+            $.backstretch(image);
+          });
             handleWeather(place[0]).done(function(weather){
-              var temp = Math.round(weather.main.temp)
+              var temp = Math.round(weather.main.temp);
               appendDestination(place[0], temp);
-
             getFlightInfo(response.airports[0].code, place[1]);
             });
-
-          });
-        }
-        else { hardAirportCode(myDestinations[Math.floor(Math.random() * (myDestinations.length-1))+1].name, function(place){
-            handleWeather(place[0]).done(function(weather){
-              var temp = Math.round(weather.main.temp)
-              console.log(weather)
-              appendDestination(place[0], temp);
-
-            getFlightInfo(response.airports[0].code, place[1]); 
-            });
-
+        });
+        } else {
+          hardAirportCode(myDestinations[Math.floor(Math.random() * (myDestinations.length-1))+1].name, function(place){
             getAndApplyPhoto(place[0]).done(function(photos) {
-              var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), place[0].toLowerCase()))
+              var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), place[0].toLowerCase()));
               var image = "https://farm"+photoInfo.farm+".staticflickr.com/"+photoInfo.server+"/"+photoInfo.id+"_"+photoInfo.secret+"_b.jpg";
               $.backstretch(image);
             });
+            handleWeather(place[0]).done(function(weather){
+              var temp = Math.round(weather.main.temp);
+              appendDestination(place[0], temp);
+            getFlightInfo(response.airports[0].code, place[1]); 
+            });
           });
         }
-      }) 
-    })
-
-
+      }
+    );
   });
+})
 }
+
 
 // FLIGHT API SECTION ^^ 
