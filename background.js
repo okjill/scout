@@ -235,6 +235,7 @@ function deleteDestinationNote(place) {
 
   function deleteDestination(destination) {
     var index = myDestinations.indexOf(destination);
+    myDestinations.splice(index, 1);
     chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
     var html = "<div class='destination save'><a href='#'>" + destination.name + "</a><a href='#' id='plus-icon' class='fa fa-plus-square-o plus' aria-hidden='true'></a></div>";
       $("#available-destinations").append(html);
