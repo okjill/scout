@@ -1,3 +1,5 @@
+/*Animated menu design discovered and learned on Codrops: https://github.com/codrops/AnimatedBorderMenus*/
+
 *,
 *:after,
 *::before {
@@ -11,7 +13,7 @@ body  {
 	font-family: 'Lato', sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, a {
 	font-family: 'Quicksand', sans-serif;
 	margin-top: 5px;
 }
@@ -71,16 +73,11 @@ h1, h2, h3, h4 {
 	display: block;
 	width: 100%;
 	height: 8%;
-	background-color: #E6E6E6;
+	background-color: #FFF;
 	font-size: 0px;
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 .bt-menu-open .bt-menu-trigger span {
@@ -93,7 +90,7 @@ h1, h2, h3, h4 {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #E6E6E6;
+	background: #FFF;
 	content: '';
 	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
 	transition: transform 0.3s, background-color 0.3s;
@@ -126,13 +123,12 @@ h1, h2, h3, h4 {
 
 .bt-menu ul {
 	position: fixed;
-	bottom: 0px;
-	left: 0;
+	bottom: 5px;
+	left: 50px;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	list-style: none;
-	text-align: center;
 	white-space: nowrap;
 	height: 0;
 	-webkit-transition: height 0s 0.3s;
@@ -163,18 +159,6 @@ h1, h2, h3, h4 {
 	transform: translate3d(0,100%,0);
 }
 
-.bt-menu ul li:nth-child(1) {
-	margin-left: -20px;
-}
-
-.bt-menu ul li:nth-child(2) {
-	margin-right: 150px;
-}
-
-.bt-menu ul li:nth-child(3) {
-	margin-left: 150px;
-}
-
 .bt-menu.bt-menu-open ul li {
 	opacity: 1;
 	-webkit-transform: translate3d(0,0,0);
@@ -183,30 +167,29 @@ h1, h2, h3, h4 {
 
 .bt-menu.bt-menu-open ul li:first-child,
 .bt-menu.bt-menu-open ul li:last-child {
-	-webkit-transition-delay: 0.15s;
-	transition-delay: 0.15s;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
 }
 
-.bt-menu.bt-menu-open ul li:nth-child(2),
-.bt-menu.bt-menu-open ul li:nth-last-child(2) {
+.bt-menu.bt-menu-open ul li:nth-child(2) {
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.bt-menu.bt-menu-open ul li:nth-child(3) {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
-}
-
-.bt-menu.bt-menu-open ul li:nth-child(3),
-.bt-menu.bt-menu-open ul li:nth-last-child(3) {
-	-webkit-transition-delay: 0.05s;
-	transition-delay: 0.05s;
 }
 
 .bt-menu ul li a {
 	display: block;
 	outline: none;
-	color: #E24207;
+	color: #E6E6E6;
 	text-decoration: none;
 	text-transform: uppercase;
+	font-weight: 700;
 	letter-spacing: 1px;
-	font-size: 1.15em;
+	font-size: 1.5em;
 	-webkit-transition: color 0.2s;
 	transition: color 0.2s;
 }
@@ -218,7 +201,7 @@ h1, h2, h3, h4 {
 
 .bt-menu ul li a:hover,
 .bt-menu ul li a:focus {
-	color: #E6E6E6;
+	color: #E24207;
 }
 
 /*gets rid of annoying blue box on focus (webkit)*/
@@ -232,12 +215,12 @@ h1, h2, h3, h4 {
 
 .destination {
 	width: auto;
-	height: 50px;
+	height:50px;
 	margin: 5px 5px;
 	background-color: #6E6464;
 	text-align: center;
 	display: inline-block;
-	padding: 10px;
+	padding: 10px 20px;
 }
 
 .destination a {
@@ -248,18 +231,56 @@ h1, h2, h3, h4 {
 	outline: 0;
 }
 
+.button-link-style {
+	width: auto;
+	height: 30px;
+	background-color: #6E6464;
+	text-align: center;
+	display: inline-block;
+	padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+	border: none;
+	color: #E6E6E6;
+	margin: 0;
+	font-size: medium;
+	font-weight: 700;
+	text-decoration: none;
+	outline: 0;
+}
+
+.button-link-style:hover {
+  background-color: #E24207;
+  cursor: pointer;
+}
+
+.note-text {
+	font-size: large;
+}
+
+a.note-text {
+	text-decoration: none;
+	font-weight: bolder;
+	font-size: large;
+	color: #E24207;
+	padding-bottom: 15px;
+	outline: 0;
+	outline: none;
+}
+
+a.note-text:hover {
+	color: #6E6464;
+}
+
 /* mouse over link */
 .destination:hover {
-    background-color: #E24207;
+   background-color: #E24207;
 }
 
 .fa {
 	margin-left: 15px;
-}
-
-.travel-quote {
-	padding-top: 10px;
-	margin-left: 80px;
+	margin-right: 15px;
+	color: #333;
 }
 
 .available {
@@ -270,60 +291,67 @@ h1, h2, h3, h4 {
 	height: 400px;
 }
 
-textarea {
+#note-editor {
 	min-width: 485px;
 	min-height: 375px;
 }
 
+.plane-container {
+	position: absolute;
+  top: 30px;
+  left: 20px;
+}
+
+.white-icon:hover {
+	color: #E24207;
+}
+
+.white-icon {
+	color: #FFF;
+}
+
+.trash, .sticky, .plus {
+	color: #E6E6E6 !important;
+	font-size: medium !important;
+	padding: 0 5px;
+}
+
+.sticky, .plus {
+	margin-left: 5px !important;
+}
+
+.bt-menu ul li:nth-child(4) {
+	position: absolute;
+  bottom: -10px;
+  right: 180px;
+}
+
+.made-with-love {
+  width: 150px;
+  height: 25px;
+}
+
+.note p {
+	font-size: medium;
+}
+
+.about-logo {
+	width: 48px;
+	height: 48px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
 @media screen and (max-width: 65.1em) {
-	.bt-menu ul li a {
-		font-size: 90%;
-	}
-}
-
-@media screen and (max-width: 55.5em) {
-	.bt-menu ul li:nth-child(1) {
-		margin-left: -0px;
-		margin-right: 40px;
-	}
-
-	.bt-menu ul li:nth-child(2) {
-		margin-right: 100px;
-	}
 
 	.bt-menu ul li:nth-child(3) {
-		margin-left: 100px;
-		margin-right: 40px;
+		margin-right: 650px;
 	}
 
 	.bt-menu ul li a {
-		font-size: 80%;
-	}
-
-	.bt-menu ul li a:before {
-		display: block;
+		font-size: medium;
 	}
 }
 
-@media screen and (max-width: 32em) {
-	.bt-menu-trigger {
-		width: 40px;
-		margin-left: -20px;
-	}
 
-	.bt-menu ul li {
-		margin: 0 2%;
-	}
 
-	.bt-menu ul li:nth-child(3) {
-		margin-right: 50px;
-	}
-
-	.bt-menu ul li:nth-child(4) {
-		margin-left: 50px;
-	}
-
-	.bt-menu ul li a:before {
-		font-size: 24px;
-	}
-}

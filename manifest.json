@@ -1,26 +1,28 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.28",
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": ["jquery-3.0.0.min.js","jquery.backstretch.min.js", "fakeLoader.min.js", "content.js"]
-    }
-  ],
+  "version": "0.70",
+
+  "description": "A new tab page for travel enthusiasts.",
+  "icons": { "16": "images/icon-16.png",
+           "48": "images/icon-48.png",
+          "128": "images/icon-sm.png" },
+
   "background": {
-    "scripts": ["jquery-3.0.0.min.js", "background.js"],
+    "scripts": ["third-party-files/jquery-3.0.0.min.js", "third-party-files/jquery.backstretch.min.js", "third-party-files/fakeLoader.min.js", "background.js"],
     "persistent": false
-  }, 
-    "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
+  },
+    "content_security_policy": "script-src https://use.fontawesome.com 'self'; object-src 'self'",
     "chrome_url_overrides" : {
       "newtab": "index.html"
     },
     "permissions": [
-      "activeTab", 
+      "activeTab",
       "storage",
-      "https://api.flickr.com/"
+      "https://api.flickr.com/",
+      "https://airport.api.aero/",
+      "http://partners.api.skyscanner.net/",
+      "geolocation",
+      "unlimitedStorage"
     ]
   }
