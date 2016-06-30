@@ -153,7 +153,7 @@ function showDestinationNote(place) {
 function showAllNotes() {
   chrome.storage.sync.get(function(database) {
     if(database.myDestinationsLocal.length === 1 && database.myDestinationsLocal[0].name === "") {
-      $('#notes').append('<p id="no-message">You haven\'t saved any destinations yet. <a href="#destinations" rel="modal:open">Start adding now!</a></p>');
+      $('#notes').append('<p class="note-text" id="no-message">You haven\'t saved any destinations yet. <a class="note-text" href="#destinations" rel="modal:open">Start adding now!</a></p>');
     };
     database.myDestinationsLocal.forEach(function(country){
       if (country.name != "") {
