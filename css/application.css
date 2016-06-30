@@ -44,11 +44,74 @@ img {
 	border: none;
 }
 
+
+/* About */
+.tagline {
+  font-style: italic;
+}
+
+#youtube {
+  text-align: center;
+}
+
+#visit-header {
+  margin-top: 30px;
+}
+
+.visit-links {
+  text-align: center;
+  margin-top: -50px;
+}
+
+.about-header {
+  border-bottom: 1px solid #E24207;
+  padding-bottom: 10px;
+  width: 250px;
+  margin: auto;
+  color: #E24207;
+}
+
+.about {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#github {
+  height: 50px;
+  width: 50px;
+  margin: 40px;
+}
+
+#chrome-store {
+  height: 70px;
+  width: 70px;
+  margin: 40px;
+}
+
+.credit {
+  text-align: center;
+  margin-top: -40px;
+}
+
+#skyscanner {
+  height: 70px; 
+  width: 130px;
+  margin: 0px 40px 0px 40px;
+}
+
+#flickr {
+  height: 110px;
+  width: 120px;
+  margin: 0px 40px 0px 40px;
+}
+
+#google {
+  height: 70px;
+  width: 70px;
+  margin: 0px 40px 0px 40px;
+}
+
 /*Price Styling done by Emma*/
 .price-container {
   display: none;
 }
-
-/*.plane-container {
-  display: none;
-}*/

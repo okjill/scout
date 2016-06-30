@@ -1,23 +1,23 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.50",
+  "version": "0.51",
 
   "description": "A new tab page for travel enthusiasts.",
   "icons": { "16": "images/icon-16.png",
            "48": "images/icon-48.png",
           "128": "images/icon-sm.png" },
 
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": ["third-party-files/jquery-3.0.0.min.js","third-party-files/jquery.backstretch.min.js", "third-party-files/fakeLoader.min.js"]
-    }
-  ],
+  // "content_scripts": [
+  //   {
+  //     "matches": [
+  //       "<all_urls>"
+  //     ],
+  //     "js": ["third-party-files/jquery-3.0.0.min.js","third-party-files/jquery.backstretch.min.js", "third-party-files/fakeLoader.min.js"]
+  //   }
+  // ],
   "background": {
-    "scripts": ["third-party-files/jquery-3.0.0.min.js", "background.js"],
+    "scripts": ["third-party-files/jquery-3.0.0.min.js", "third-party-files/jquery.backstretch.min.js", "third-party-files/fakeLoader.min.js", "background.js"],
     "persistent": false
   },
     "content_security_policy": "script-src https://use.fontawesome.com 'self'; object-src 'self'",
