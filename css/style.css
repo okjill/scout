@@ -76,10 +76,6 @@ h1, h2, h3, h4, a {
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 	-webkit-touch-callout: none;
-/*	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;*/
 }
 
 .bt-menu-open .bt-menu-trigger span {
@@ -186,9 +182,10 @@ h1, h2, h3, h4, a {
 .bt-menu ul li a {
 	display: block;
 	outline: none;
-	color: #E24207;
+	color: #E6E6E6;
 	text-decoration: none;
 	text-transform: uppercase;
+	font-weight: 700;
 	letter-spacing: 1px;
 	font-size: 1.5em;
 	-webkit-transition: color 0.2s;
@@ -202,7 +199,7 @@ h1, h2, h3, h4, a {
 
 .bt-menu ul li a:hover,
 .bt-menu ul li a:focus {
-	color: #E6E6E6;
+	color: #E24207;
 }
 
 /*gets rid of annoying blue box on focus (webkit)*/
