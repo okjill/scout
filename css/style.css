@@ -232,7 +232,7 @@ h1, h2, h3, h4, a {
 	outline: 0;
 }
 
-button {
+.button-link-style {
 	width: auto;
 	height: 30px;
 	margin: 5px 5px;
@@ -241,9 +241,6 @@ button {
 	display: inline-block;
 	padding: 5px 10px;
 	border: none;
-}
-
-button a {
 	color: #E6E6E6;
 	margin: 0;
 	font-size: medium;
@@ -251,7 +248,7 @@ button a {
 	outline: 0;
 }
 
-button:hover {
+.button-link-style:hover {
   background-color: #E24207;
 }
 
