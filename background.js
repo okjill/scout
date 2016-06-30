@@ -204,36 +204,6 @@ function deleteDestinationNote(place) {
 // END NOTES /\
 
 // BEGIN DESTINATIONS \/
-// initialize data
-  var allDestinations;
-  chrome.storage.sync.get({"allDestinationsLocal":
-   [{"name":"Barcelona", "note":""},
-    {"name":"Bangkok", "note":""},
-    {"name":"Berlin", "note":""},
-    {"name":"Bora Bora", "note":""},
-    {"name":"Cape Town", "note":""},
-    {"name":"Chicago", "note":""},
-    {"name":"Costa Rica", "note":""},
-    {"name":"London", "note":""},
-    {"name":"Machu Picchu", "note":""},
-    {"name":"Marrakesh", "note":""},
-    {"name":"Paris", "note":""},
-    {"name":"San Francisco", "note":""},
-    {"name":"Seattle", "note":""},
-    {"name":"Sydney", "note":""},
-    {"name":"Tokyo", "note":""}
-   ]}, function(data) {
-    allDestinations = data.allDestinationsLocal;
-    chrome.storage.sync.set({"allDestinationsLocal": allDestinations});
-  });
-
-  var myDestinations;
-  chrome.storage.sync.get({"myDestinationsLocal": [{"name":"", "note":""}]}, function(data) {
-    myDestinations = data.myDestinationsLocal;
-    chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
-  });
-
-  var availableDestinations = [];
 
   // functions
   function findAvailableDestinations() {
@@ -319,6 +289,11 @@ function deleteDestinationNote(place) {
     $(document).on("click", ".destination.mine", function() {
       var $this = $(this);
       textShowDestinationNote($this.closest("div").attr("id"));
+    });
+
+    $(document).on("click", "div#notes.modal a#note-icon", function() {
+      var $this = $(this);
+      textShowDestinationNote($this[0].parentNode.innerText);
     });
     // END DESTINATIONS /\
   }
