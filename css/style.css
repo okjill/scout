@@ -272,17 +272,12 @@ a.note-text:hover {
 
 /* mouse over link */
 .destination:hover {
-    background-color: #E24207;
+   background-color: #E24207;
 }
 
 .fa {
 	margin-left: 15px;
 	color: #333;
-}
-
-.travel-quote {
-	padding-top: 10px;
-	margin-left: 80px;
 }
 
 .available {
@@ -297,6 +292,7 @@ a.note-text:hover {
 	min-width: 485px;
 	min-height: 375px;
 }
+
 .plane-container {
 	position: absolute;
   top: 30px;
