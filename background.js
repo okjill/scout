@@ -142,8 +142,8 @@ function showDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
     database.myDestinationsLocal.forEach(function(country){
       if(country.name == place) {
-        $(".jqte_editor").html(country.note);
-        $("#note-description").html(country.note);
+        $(".jqte_editor").html("<p class='note-text'>Add notes about your trip here! We got you started with a few handy links.</p>" + country.note);
+        $("#note-description").html("<p class='note-text'>Add notes about your trip here! We got you started with a few handy links.</p>" + country.note);
       };
     });
   });
@@ -179,36 +179,6 @@ function deleteDestinationNote(place) {
 // END NOTES /\
 
 // BEGIN DESTINATIONS \/
-// initialize data
-  var allDestinations;
-  chrome.storage.sync.get({"allDestinationsLocal":
-   [{"name":"Barcelona", "note":""},
-    {"name":"Bangkok", "note":""},
-    {"name":"Berlin", "note":""},
-    {"name":"Bora Bora", "note":""},
-    {"name":"Cape Town", "note":""},
-    {"name":"Chicago", "note":""},
-    {"name":"Costa Rica", "note":""},
-    {"name":"London", "note":""},
-    {"name":"Machu Picchu", "note":""},
-    {"name":"Marrakesh", "note":""},
-    {"name":"Paris", "note":""},
-    {"name":"San Francisco", "note":""},
-    {"name":"Seattle", "note":""},
-    {"name":"Sydney", "note":""},
-    {"name":"Tokyo", "note":""}
-   ]}, function(data) {
-    allDestinations = data.allDestinationsLocal;
-    chrome.storage.sync.set({"allDestinationsLocal": allDestinations});
-  });
-
-  var myDestinations;
-  chrome.storage.sync.get({"myDestinationsLocal": [{"name":"", "note":""}]}, function(data) {
-    myDestinations = data.myDestinationsLocal;
-    chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
-  });
-
-  var availableDestinations = [];
 
   // functions
   function findAvailableDestinations() {
@@ -267,6 +237,8 @@ function deleteDestinationNote(place) {
     var index = myDestinations.indexOf(destination);
     myDestinations.splice(index, 1);
     chrome.storage.sync.set({"myDestinationsLocal": myDestinations});
+    var html = "<div class='destination save'><a href='#'>" + destination.name + "</a><a href='#' id='plus-icon' class='fa fa-plus-square-o plus' aria-hidden='true'></a></div>";
+      $("#available-destinations").append(html);
   }
 
   function listenForClick() {
@@ -294,6 +266,11 @@ function deleteDestinationNote(place) {
     $(document).on("click", ".destination.mine", function() {
       var $this = $(this);
       textShowDestinationNote($this.closest("div").attr("id"));
+    });
+
+    $(document).on("click", "div#notes.modal a#note-icon", function() {
+      var $this = $(this);
+      textShowDestinationNote($this[0].parentNode.innerText);
     });
     // END DESTINATIONS /\
   }

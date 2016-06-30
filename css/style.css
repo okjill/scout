@@ -232,6 +232,47 @@ h1, h2, h3, h4, a {
 	outline: 0;
 }
 
+button {
+	width: auto;
+	height: 30px;
+	margin: 5px 5px;
+	background-color: #6E6464;
+	text-align: center;
+	display: inline-block;
+	padding: 5px 10px;
+	border: none;
+}
+
+button a {
+	color: #E6E6E6;
+	margin: 0;
+	font-size: medium;
+	text-decoration: none;
+	outline: 0;
+}
+
+button:hover {
+  background-color: #E24207;
+}
+
+.note-text {
+	font-size: large;
+}
+
+a.note-text {
+	text-decoration: none;
+	font-weight: bolder;
+	font-size: large;
+	color: #E24207;
+	padding-bottom: 15px;
+	outline: 0;
+	outline: none;
+}
+
+a.note-text:hover {
+	color: #6E6464;
+}
+
 /* mouse over link */
 .destination:hover {
     background-color: #E24207;
