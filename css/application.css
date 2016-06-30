@@ -44,7 +44,6 @@ img {
 	border: none;
 }
 
-
 /* About */
 .tagline {
   font-style: italic;
@@ -94,7 +93,7 @@ img {
 }
 
 #skyscanner {
-  height: 70px; 
+  height: 70px;
   width: 130px;
   margin: 0px 40px 0px 40px;
 }
@@ -111,7 +110,39 @@ img {
   margin: 0px 40px 0px 40px;
 }
 
-/*Price Styling done by Emma*/
 .price-container {
   display: none;
+  background-color: #B2AEB1;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  margin-left: 40px;
+  font-size: small;
+  font-weight: 700;
+  border-radius: 50%;
+  opacity: 0.85;
 }
+
+.price-container a {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.price-container a:hover {
+  color: #E24207;
+}
+
+.flight-price {
+  padding-top: 30px;
+}
+
+.price-plane {
+  color: #ffffff !important;
+  margin-left: 0 !important;
+  padding-top: 10px;
+}
+
+
