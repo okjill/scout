@@ -308,40 +308,75 @@ function setupDate(longForm){
 }
 
 function getAirportCode(lat, long){
-  return $.ajax({url:"https://airport.api.aero/airport/nearest/"+lat+"/"+long+"?maxAirports=1&user_key=6af0095cd237e754d20b7a2f4745110b",dataType: "json", method: "GET"});
+  return $.ajax({url:"https://airport.api.aero/airport/nearest/"+lat+"/"+long+"?maxAirports=2&user_key=6af0095cd237e754d20b7a2f4745110b",dataType: "json", method: "GET"});
 };
 
 function hardAirportCode(city, success) {
-  var destinationKey = { "Barcelona": "BCN", "Bangkok": "BKK", "Berlin": "TXL", "Bora Bora": "BOB", "Cape Town": "CPT","Chicago": "ORD","Costa Rica": "SJO","London": "LHR","Machu Picchu": "CUZ","Marrakesh": "RAK","Paris": "CDG","San Francisco": "SFO","Seattle": "SEA","Sydney": "SYD","Tokyo": "HND",};
+  var destinationKey = { "Barcelona": "BCN", "Bangkok": "BKK", "Berlin": "TXL", "Bora Bora": "BOB", "Cape Town": "CPT","Chicago": "ORD","Costa Rica": "SJO","London": "LHR","Machu Picchu": "CUZ","Marrakesh": "CMN","Paris": "CDG","San Francisco": "SFO","Seattle": "SEA","Sydney": "SYD","Tokyo": "HND",};
   success([city, destinationKey[city]])
 };
 
-function getFlightInfo(currentLocation, destination) {
-  var leaveDate = getTravelDates()[0];
-  var returnDate = getTravelDates()[1];
+function getFlightInfo(currentLocationOne, currentLocationTwo, destination) {
+  console.log(currentLocationOne);
+  console.log(currentLocationTwo);
+  var dates = getTravelDates()
+  var leaveDate = dates[0];
+  var returnDate = dates[1];
+  var niceDate = dates[2];
+  var response = $.ajax({url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en_US/"+currentLocationOne+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db645170358776132895925581771065", method: "get", contentType: "application/json", dataType: 'json'});
+response.done(function(flightInfo){
+  console.log("LENGTH", flightInfo.Quotes.length)
 
-  var response = $.ajax({url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en_US/"+currentLocation+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db645170358776132895925581771065", method: "get", contentType: "application/json", dataType: 'json'});
+  if (flightInfo.Quotes.length < 1) {
+    console.log("leading into the second try")
+    console.log(currentLocationTwo)
+    console.log(destination)
+    response = $.ajax({url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en_US/"+currentLocationTwo+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db645170358776132895925581771065", method: "get", contentType: "application/json", dataType: 'json'}).done(function(flightInfo){
+      console.log("TRY2");
+      console.log(flightInfo)
+       var price = flightInfo.Quotes[0].MinPrice;
+       var destinName = flightInfo.Places[0].CityName;
+       var current = flightInfo.Places[1].CityName;
+       var link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en_US/"+currentLocationTwo+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db64517035877613";
+       if (flightInfo.Quotes.length < 1) {
+        $("#flight-current").text("Check out SkyScanner for deals!");
+        $("#flight-link").text("skyscanner.com")
+       } else {
+         $("#flight-price").text("$" + price);
+         $("#flight-date").text(niceDate);
+         $("#flight-current").text(current);
+         $("#flight-destination").text(destinName);
+         $("#flight-link").attr("href", link);
+       }
+    });
+  }else {
+    console.log("TRY1");
 
-  response.done(function(flightInfo){
     var price = flightInfo.Quotes[0].MinPrice;
-    var destination = flightInfo.Places[0].CityName;
+    var destinName = flightInfo.Places[0].CityName;
     var current = flightInfo.Places[1].CityName;
-    var link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en_US/"+currentLocation+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db64517035877613"
-    var niceDate = getTravelDates()[2]
+    var link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en_US/"+currentLocationOne+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db64517035877613";
+      if (flightInfo.Quotes.length < 1) {
+        $("#flight-current").text("Check out SkyScanner for deals!");
+        $("#flight-link").text("skyscanner.com")
+      } else {
+        $("#flight-price").text("$" + price);
+        $("#flight-date").text(niceDate);
+        $("#flight-current").text(current);
+        $("#flight-destination").text(destinName);
+        $("#flight-link").attr("href", link);
+      }
+    };
 
-    $("#flight-price").text("$" + price)
-    $("#flight-date").text(niceDate)
-    $("#flight-current").text(current)
-    $("#flight-destination").text(destination)
-    $("#flight-link").attr("href", link)
 
-  $(".plane-container").on("click", function(event){
-    $(".plane-container").hide();
-    $(".price-container").show();
-  });
-
-  });
-};
+        // $(".plane-container").show();
+        
+      $(".plane-container").on("click", function(event){
+        $(".plane-container").hide();
+        $(".price-container").show();
+      });
+  })
+}
 
 
 function grabPhotoTag(success) {
@@ -363,7 +398,7 @@ function pageAddOnHandler() {
             handleWeather(place[0]).done(function(weather){
               var temp = Math.round(weather.main.temp);
               appendDestination(place[0], temp);
-            getFlightInfo(response.airports[0].code, place[1]);
+            getFlightInfo(response.airports[0].code, response.airports[1].code, place[1]);
             });
         });
         } else {
@@ -376,7 +411,7 @@ function pageAddOnHandler() {
             handleWeather(place[0]).done(function(weather){
               var temp = Math.round(weather.main.temp);
               appendDestination(place[0], temp);
-            getFlightInfo(response.airports[0].code, place[1]); 
+            getFlightInfo(response.airports[0].code, response.airports[1].code, place[1]); 
             });
           });
         }
