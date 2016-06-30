@@ -167,8 +167,8 @@ function showDestinationNote(place) {
   chrome.storage.sync.get(function(database) {
     database.myDestinationsLocal.forEach(function(country){
       if(country.name == place) {
-        $(".jqte_editor").html(country.note);
-        $("#note-description").html(country.note);
+        $(".jqte_editor").html("<p class='note-text'>Add notes about your trip here! We got you started with a few handy links.</p>" + country.note);
+        $("#note-description").html("<p class='note-text'>Add notes about your trip here! We got you started with a few handy links.</p>" + country.note);
       };
     });
   });
