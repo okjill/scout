@@ -143,14 +143,14 @@ iframe {
   margin-top: 30px;
   padding-top: 15px;
   margin-left: 30px;
-  font-size: medium;
+  font-size: large;
   font-weight: 700;
   border-radius: 50%;
   opacity: 0.85;
 }
 
 .price-container a {
-  color: #fff;
+  color: #FFF;
   cursor: pointer;
   text-decoration: none;
 }
@@ -164,8 +164,9 @@ iframe {
 }
 
 .price-plane {
-  color: #ffffff !important;
+  color: #FFF !important;
   margin-left: 0 !important;
+  margin-right: 5px !important;
   padding-top: 10px;
 }
 
