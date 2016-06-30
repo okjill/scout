@@ -1,18 +1,17 @@
-window.onload = function() {
+// window.onload = function() {
 
-  getCurrentLocation();
-
-  grabPhotoTag();
-};
+// };
 
 $(document).ready(function(){
+  pageAddOnHandler();
+  currentWeatherRunner();
 
   $("body").css("background", "darkgray");
   $("#note-editor").jqte();
   $("head").append("<script src='https://use.fontawesome.com/8e7d53f080.js'></script>");
 
   $("#fakeLoader").fakeLoader({
-            timeToHide:10, //Time in milliseconds for fakeLoader disappear
+            timeToHide:2000, //Time in milliseconds for fakeLoader disappear
             zIndex:999, // Default zIndex
             spinner:"spinner1",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
             bgColor:"#6E6464", //Hex, RGB or RGBA colors
@@ -44,29 +43,9 @@ $(document).ready(function(){
   showMyDestinations();
 });
 
-var destinationTag;
-// BACKGROUND IMAGE \/
-function grabPhotoTag() {
-  chrome.storage.sync.get("myDestinationsLocal", function(object){
-    var myDestinations = object["myDestinationsLocal"];
-    if (myDestinations.length === 1 && myDestinations[0].name == "") {
-      destinationTag = allDestinations[Math.floor((Math.random() * allDestinations.length))].name;
-    }
-    else {
-      destinationTag = myDestinations[Math.floor((Math.random() * myDestinations.length))].name;
-    }
-    getAndApplyPhoto(destinationTag.toLowerCase());
-    handleWeather("destin", destinationTag);
-  });
-};
 
 function getAndApplyPhoto(tag) {
-  var response = $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getList&api_key=15814abffa9beab837cad31506bd4eca&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1", method: "get"});
-  response.done(function(photos) {
-    var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), tag));
-    var image = "https://farm"+photoInfo.farm+".staticflickr.com/"+photoInfo.server+"/"+photoInfo.id+"_"+photoInfo.secret+"_b.jpg";
-    $.backstretch(image);
-  });
+  return $.ajax({url: "https://api.flickr.com/services/rest/?method=flickr.favorites.getList&api_key=15814abffa9beab837cad31506bd4eca&user_id=87845824%40N05&extras=tags&format=json&nojsoncallback=1", method: "get"});
 };
 
 function grabPhotoObjects(response) {
@@ -90,19 +69,23 @@ function returnSpecificImage(array) {
 // BACKGROUND IMAGE ^^
 
 // WEATHER API \/
-function handleWeather(where, city) {
-   var weatherResponse = $.get({url:"http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&appid=76b001f2621941cd5d249226db15ed15", method: "get"});
-
-  weatherResponse.done(function(weather){
-    var temp = Math.round(weather.main.temp)
-    if (where === "current") {
-      appendCurrent(city, temp);
-    } else {
-    appendDestination(city, temp);
-    }
-  });
+function handleWeather(city) {
+   return $.ajax({url:"http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&appid=76b001f2621941cd5d249226db15ed15", method: "get"});
 };
 
+function currentWeatherRunner() {
+  getCurrentLocation(function(position){
+    getCurrentCityName(position.coords.latitude, position.coords.longitude).done(function (city){ 
+      var cityName = city.results[0].address_components[3].long_name
+      handleWeather(city.results[0].address_components[3].long_name).done(function(weather){
+        var temp = Math.round(weather.main.temp)
+        appendCurrent(cityName, temp);
+        });
+      });
+    });
+  };
+
+  
 function appendCurrent(city, temp) {
   $("#current-city").text(city);
   $("#current-temp").text(temp+"°")
@@ -112,25 +95,17 @@ function appendDestination(city, temp) {
   $("#destination-city").text(city);
   $("#destination-temp").text(temp+"°")
 };
+
 // WEATHER API ^^
 
-function getCurrentLocation(){
-  // var options = {maximumAge: 3600000}
+function getCurrentLocation(success){
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position){
-      var lat = position.coords.latitude;
-      var long = position.coords.longitude;
-      var latlong = [lat,long];
-      getCurrentCityName(lat, long);
-    });
+    navigator.geolocation.getCurrentPosition(success);
   };
 };
 
 function getCurrentCityName(lat, long){
-  $.ajax({ url:"http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true", method: "get"}).done(function (city){
-    var cityName = city.results[0].address_components[3].long_name
-    handleWeather("current", cityName);
-  });
+  return $.ajax({ url:"http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true", method: "get"});
 };
 
 // BEGIN NOTES \/
@@ -322,3 +297,115 @@ function deleteDestinationNote(place) {
     });
     // END DESTINATIONS /\
   }
+
+
+// FLIGHT API SECTION \/
+function getTravelDates(){
+  var today = new Date().getDay();
+  var timeToFriday = (5 - today)*8.64e+7;
+  var friday = new Date(+new Date + timeToFriday);
+  var monthFromThen = (timeToFriday + 2.419e+9)
+  var weekAfterMonth = (monthFromThen + 6.048e+8)
+  var fullLeaveDate = new Date(+new Date + monthFromThen);
+  var fullReturnDate = new Date(+new Date + weekAfterMonth);
+  var niceDate = fullLeaveDate.toString().slice(0,10)
+  var leaveDate = ""
+  leaveDate = leaveDate.concat(setupDate(fullLeaveDate))
+
+  var returnDate = ""
+  returnDate = returnDate.concat(setupDate(fullReturnDate))
+  return [leaveDate, returnDate, niceDate]
+};
+
+function formatDate(number) { return "0" + number };
+
+function setupDate(longForm){
+  var year = longForm.getFullYear();
+  var month = longForm.getMonth();
+  var day = longForm.getDate();
+  if (month.toString().length<2) {
+    month = formatDate((month+1).toString()) 
+  };
+  if (day.toString().length<2) {day = formatDate(day.toString())};
+  return year+"-"+month+"-"+day
+}
+
+function getAirportCode(lat, long){
+  return $.ajax({url:"https://airport.api.aero/airport/nearest/"+lat+"/"+long+"?maxAirports=1&user_key=6af0095cd237e754d20b7a2f4745110b",dataType: "json", method: "GET"});
+};
+
+function hardAirportCode(city, success) {
+  var destinationKey = { "Barcelona": "BCN", "Bangkok": "BKK", "Berlin": "TXL", "Bora Bora": "BOB", "Cape Town": "CPT","Chicago": "ORD","Costa Rica": "SJO","London": "LHR","Machu Picchu": "CUZ","Marrakesh": "RAK","Paris": "CDG","San Francisco": "SFO","Seattle": "SEA","Sydney": "SYD","Tokyo": "HND",};
+  success([city, destinationKey[city]])
+};
+
+function getFlightInfo(currentLocation, destination) {
+  var leaveDate = getTravelDates()[0];
+  var returnDate = getTravelDates()[1];
+
+  var response = $.ajax({url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en_US/"+currentLocation+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db645170358776132895925581771065", method: "get", contentType: "application/json", dataType: 'json'});
+
+  response.done(function(flightInfo){
+    var price = flightInfo.Quotes[0].MinPrice;
+    var destination = flightInfo.Places[0].CityName;
+    var current = flightInfo.Places[1].CityName;
+    var link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en_US/"+currentLocation+"/"+destination+"/"+leaveDate+"/"+returnDate+"/?apiKey=db64517035877613"
+    var niceDate = getTravelDates()[2]
+
+    $("#flight-price").text("$" + price)
+    $("#flight-date").text(niceDate)
+    $("#flight-current").text(current)
+    $("#flight-destination").text(destination)
+    $("#flight-link").attr("href", link)
+
+  $(".plane-container").on("click", function(event){
+    $(".plane-container").hide();
+    $(".price-container").show();
+  });
+
+  });
+};
+
+
+function grabPhotoTag(success) {
+  chrome.storage.sync.get("myDestinationsLocal", success);
+};
+
+function pageAddOnHandler() {
+  grabPhotoTag(function(object){
+    var myDestinations = object["myDestinationsLocal"];
+    var airportCode = getCurrentLocation(function(position){
+      getAirportCode(position.coords.latitude, position.coords.longitude).always(function(response) {
+        if (myDestinations.length === 1 && myDestinations[0].name == ""){
+          hardAirportCode(allDestinations[Math.floor(Math.random() * (allDestinations.length-1))].name, function(place) {
+          getAndApplyPhoto(place[0]).done(function(photos) {
+            var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), place[0].toLowerCase()));
+            var image = "https://farm"+photoInfo.farm+".staticflickr.com/"+photoInfo.server+"/"+photoInfo.id+"_"+photoInfo.secret+"_b.jpg";
+            $.backstretch(image);
+          });
+            handleWeather(place[0]).done(function(weather){
+              var temp = Math.round(weather.main.temp);
+              appendDestination(place[0], temp);
+            getFlightInfo(response.airports[0].code, place[1]);
+            });
+        });
+        } else {
+          hardAirportCode(myDestinations[Math.floor(Math.random() * (myDestinations.length-1))+1].name, function(place){
+            getAndApplyPhoto(place[0]).done(function(photos) {
+              var photoInfo = returnSpecificImage(getMatchingTagArray(grabPhotoObjects(photos), place[0].toLowerCase()));
+              var image = "https://farm"+photoInfo.farm+".staticflickr.com/"+photoInfo.server+"/"+photoInfo.id+"_"+photoInfo.secret+"_b.jpg";
+              $.backstretch(image);
+            });
+            handleWeather(place[0]).done(function(weather){
+              var temp = Math.round(weather.main.temp);
+              appendDestination(place[0], temp);
+            getFlightInfo(response.airports[0].code, place[1]); 
+            });
+          });
+        }
+      }
+    );
+  });
+ })
+}
+// FLIGHT API SECTION ^^ 
