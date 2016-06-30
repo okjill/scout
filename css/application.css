@@ -44,6 +44,10 @@ img {
 	border: none;
 }
 
+/* About */
+.tagline {
+  font-style: italic;
+}
 
 #youtube {
   text-align: center;
@@ -59,14 +63,15 @@ img {
 }
 
 .about-header {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #E24207;
   padding-bottom: 10px;
   width: 250px;
   margin: auto;
+  color: #E24207;
 }
 
 .about {
-  margin-top: 30px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -88,19 +93,19 @@ img {
 }
 
 #skyscanner {
-  height: 80px; 
+  height: 70px; 
   width: 130px;
   margin: 0px 40px 0px 40px;
 }
 
 #flickr {
-  height: 120px;
-  width: 130px;
+  height: 110px;
+  width: 120px;
   margin: 0px 40px 0px 40px;
 }
 
 #google {
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   margin: 0px 40px 0px 40px;
 }
