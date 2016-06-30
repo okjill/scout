@@ -43,3 +43,7 @@ img {
 #weather-input-button {
 	border: none;
 }
+
+.price-container {
+  display: none;
+}
