@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="images/icon-16.png">
 
   <!-- Script-O-Rama -->
+  <script type="text/javascript" src="seeds.js"></script>
   <script type="text/javascript" src="third-party-files/jquery-3.0.0.min.js"></script>
   <script type="text/javascript" src="background.js"></script>
   <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
@@ -29,6 +30,16 @@
   <div class="plane-container">
     <i class="fa fa-plane fa-3x white-icon" aria-hidden="true" title="Click to see current flight information!"></i>
   </div>
+  
+  <div class="price-container"> <a id="flight-link" href="www.google.com">
+    <span id="flight-price">$2000</span>
+    <span id="flight-date">Fri Jul 29</span>
+    <span>
+      <span id="flight-current">Chicago</span> - <span id="flight-destination">Barcelona</span>
+    </span>
+    </a>
+  </div>
+
   <div class="weather-container-1">
     <p id="destination-temp"></p>
     <p id="destination-city"></p>
@@ -50,7 +61,7 @@
   </div>
     <!-- About Modal -->
     <div id="about" style="display:none;">
-      <h1 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>About</h1>
+      <h1 id='user-loggedin'><img class="about-logo" src="images/icon-48.png">About</h1>
       <hr>
         <div class="about">
           <h1 class="about-header">SCOUT - v0.45</h1>
@@ -85,17 +96,17 @@
       <hr>
       <div class="note">
         <p id="note-description"></p>
-        <a id="edit-note-button" href="#edit-note" rel="modal:open"></a>
-        <a id="back-button" href="#notes" rel="modal:open">View Your Notes</a>
+        <a class="button-link-style" id="edit-note-button" href="#edit-note" rel="modal:open"></a>
+        <a class="button-link-style" id="all-notes-button" href="#notes" rel="modal:open">View All Notes</a>
       </div>
     </div>
     <div id="edit-note" style="display:none;">
-      <h1><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Edit This Note</h1>
+      <h1><i class="fa fa-pencil-square-o fa-2x fa-pull-left" aria-hidden="true"></i>Edit Note</h1>
       <hr>
       <div class="edit-note" id="note-editor">
 
       </div>
-      <button id="save-button">Save</button>
+      <a class="button-link-style" id="save-button">Save</a>
     </div>
     <!-- Destinations Modal -->
     <div id="destinations" style="display:none;">

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scout",
-  "version": "0.42",
+  "version": "0.51",
 
   "description": "A new tab page for travel enthusiasts.",
   "icons": { "16": "images/icon-16.png",
@@ -28,6 +28,7 @@
       "activeTab",
       "storage",
       "https://api.flickr.com/",
-      "geolocation"
+      "geolocation",
+      "unlimitedStorage"
     ]
   }

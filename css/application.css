@@ -44,6 +44,7 @@ img {
 	border: none;
 }
 
+
 /* About */
 .tagline {
   font-style: italic;
@@ -109,3 +110,9 @@ img {
   width: 70px;
   margin: 0px 40px 0px 40px;
 }
+
+/*Price Styling done by Emma*/
+.price-container {
+  display: none;
+}
+
