@@ -321,7 +321,7 @@ a.note-text:hover {
 }
 
 .sticky, .plus {
-	margin-left: 10px !important;
+	margin-left: 5px !important;
 }
 
 .bt-menu ul li:nth-child(4) {
@@ -333,6 +333,17 @@ a.note-text:hover {
 .made-with-love {
   width: 150px;
   height: 25px;
+}
+
+.note p {
+	font-size: medium;
+}
+
+.about-logo {
+	width: 48px;
+	height: 48px;
+	margin-right: 10px;
+	vertical-align: middle;
 }
 
 @media screen and (max-width: 65.1em) {

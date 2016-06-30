@@ -43,3 +43,8 @@ img {
 #weather-input-button {
 	border: none;
 }
+
+/*Price Styling done by Emma*/
+.price-container {
+  display: none;
+}

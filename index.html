@@ -14,7 +14,6 @@
   <script type="text/javascript" src="third-party-files/jquery.backstretch.min.js"></script>
   <script type="text/javascript" src="third-party-files/fakeLoader.min.js"></script>
 
-
   <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
@@ -31,6 +30,16 @@
   <div class="plane-container">
     <i class="fa fa-plane fa-3x white-icon" aria-hidden="true" title="Click to see current flight information!"></i>
   </div>
+  
+  <div class="price-container"> <a id="flight-link" href="www.google.com">
+    <span id="flight-price">$2000</span>
+    <span id="flight-date">Fri Jul 29</span>
+    <span>
+      <span id="flight-current">Chicago</span> - <span id="flight-destination">Barcelona</span>
+    </span>
+    </a>
+  </div>
+
   <div class="weather-container-1">
     <p id="destination-temp"></p>
     <p id="destination-city"></p>
@@ -52,7 +61,7 @@
   </div>
     <!-- About Modal -->
     <div id="about" style="display:none;">
-      <h1 id='user-loggedin'><i class="fa fa-cog fa-2x fa-pull-left" aria-hidden="true"></i>About</h1>
+      <h1 id='user-loggedin'><img class="about-logo" src="images/icon-48.png">About</h1>
       <hr>
     </div>
     <!-- Notes Modals -->
@@ -61,7 +70,7 @@
       <hr>
     </div>
     <div id="view-note" style="display:none;">
-      <h1 id="note-place-title">Your Note</h1>
+      <i class="fa fa-map-marker fa-3x fa-pull-left" aria-hidden="true"></i><h1 id="note-place-title">Your Note</h1>
       <hr>
       <div class="note">
         <p id="note-description"></p>
