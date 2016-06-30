@@ -75,7 +75,7 @@ function handleWeather(city) {
 
 function currentWeatherRunner() {
   getCurrentLocation(function(position){
-    getCurrentCityName(position.coords.latitude, position.coords.longitude).done(function (city){ 
+    getCurrentCityName(position.coords.latitude, position.coords.longitude).done(function (city){
       var cityName = city.results[0].address_components[3].long_name
       handleWeather(city.results[0].address_components[3].long_name).done(function(weather){
         var temp = Math.round(weather.main.temp)
@@ -85,7 +85,7 @@ function currentWeatherRunner() {
     });
   };
 
-  
+
 function appendCurrent(city, temp) {
   $("#current-city").text(city);
   $("#current-temp").text(temp+"°")
@@ -120,7 +120,7 @@ function saveNote(place) {
 };
 // replace note text with particular country note info
 function textShowDestinationNote(place) {
-  $("#note-place-title").text(place);
+  $("#note-place-title").html("<i class='fa fa-map-marker' aria-hidden='true'></i>" +place);
   showDestinationNote(place);
   $("#edit-note-button").text("Edit Note");
 };
@@ -301,7 +301,7 @@ function setupDate(longForm){
   var month = longForm.getMonth();
   var day = longForm.getDate();
   if (month.toString().length<2) {
-    month = formatDate((month+1).toString()) 
+    month = formatDate((month+1).toString())
   };
   if (day.toString().length<2) {day = formatDate(day.toString())};
   return year+"-"+month+"-"+day
@@ -370,7 +370,7 @@ response.done(function(flightInfo){
 
 
         // $(".plane-container").show();
-        
+
       $(".plane-container").on("click", function(event){
         $(".plane-container").hide();
         $(".price-container").show();
@@ -411,7 +411,7 @@ function pageAddOnHandler() {
             handleWeather(place[0]).done(function(weather){
               var temp = Math.round(weather.main.temp);
               appendDestination(place[0], temp);
-            getFlightInfo(response.airports[0].code, response.airports[1].code, place[1]); 
+            getFlightInfo(response.airports[0].code, response.airports[1].code, place[1]);
             });
           });
         }
@@ -420,4 +420,4 @@ function pageAddOnHandler() {
   });
  })
 }
-// FLIGHT API SECTION ^^ 
+// FLIGHT API SECTION ^^
